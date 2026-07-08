@@ -27,7 +27,12 @@
         <aside id="wiki_sidebar">
             <h3 class="sidebar_title">Select Dungeon</h3>
             
-            <button class="nav_btn active" data-target="fire">
+            <!-- New General Info Tab -->
+            <button class="nav_btn active" data-target="general">
+                <i class="fa-solid fa-circle-info" style="margin-right: 12px; font-size: 14px;"></i> General Info
+            </button>
+
+            <button class="nav_btn" data-target="fire">
                 <span class="diff_dot diff_easy"></span> Fire Temple
             </button>
 
@@ -65,8 +70,69 @@
         </aside>
 
         <main id="wiki_content">
+
+        <article class="dungeon_card" id="general" style="display: block;">
+            <div class="dungeon_header">
+                <h2 class="dungeon_name">General Information</h2>
+                <div class="dungeon_badges">
+                    <span class="badge content_badge"><i class="fa-solid fa-circle-info"></i> Guide</span>
+                    <span class="badge content_badge"><i class="fa-solid fa-book"></i> Lore</span>
+                </div>
+            </div>
             
-        <article class="dungeon_card active" id="fire">
+            <div class="dungeon_section">
+                <h3><i class="fa-solid fa-ban"></i> Disabled Items & Commands</h3>
+                <div class="section_content">
+                    <p>To ensure the dungeons operate correctly and provide a fair challenge, there are some restrictions while you are inside:</p>
+                    <ul>
+                        <li><strong>Disabled Items:</strong> Elytra, Wind Charges, Ender Pearls, and Chorus Fruit.</li>
+                        <li><strong>Disabled Commands:</strong> Most commands are disabled while in a dungeon. You will not be able to teleport someone in or exit out once you start the dungeon.</li>
+                    </ul>
+                </div>
+            </div>
+            
+<div class="dungeon_section">
+                <h3><i class="fa-solid fa-khanda"></i> Enemy Information</h3>
+                <div class="section_content">
+                    <p>The dungeons are guarded by custom enemies with unique mechanics. Understanding how they fight is crucial to surviving your run. Here are the common threats you will face:</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                        
+                        <div style="flex: 1; min-width: 250px; background: #f9f9f9; border: 3px solid #20150F; border-radius: 15px; padding: 15px; text-align: center; box-shadow: 4px 4px 0px #20150F;">
+                            <img src="./images/zombie.png" alt="Zombie" style="width: 100%; max-width: 150px; object-fit: contain; border: 2px solid #20150F; border-radius: 8px; margin-bottom: 10px;">
+                            <h4 style="margin: 0 0 10px 0; font-size: 22px; color: #20150F;">Zombies</h4>
+                            <p style="font-size: 16px; margin: 0; text-align: left;">
+                                Dungeon zombies are incredibly fast, moving just as fast as a running player. In addition to their high speed, they hit much harder and deal more damage than vanilla zombies.
+                            </p>
+                        </div>
+
+                        <div style="flex: 1; min-width: 250px; background: #f9f9f9; border: 3px solid #20150F; border-radius: 15px; padding: 15px; text-align: center; box-shadow: 4px 4px 0px #20150F;">
+                            <img src="./images/pigman.png" alt="Pigmen" style="width: 100%; max-width: 150px; object-fit: contain; border: 2px solid #20150F; border-radius: 8px; margin-bottom: 10px;">
+                            <h4 style="margin: 0 0 10px 0; font-size: 22px; color: #20150F;">Pigmen</h4>
+                            <p style="font-size: 16px; margin: 0; text-align: left;">
+                                Extremely dangerous but highly fragile. Pigmen only have 1 heart of health, but if they hit you, they deal 3 hearts of <strong>true damage</strong>. Upon death, they explode and spawn baby zombies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dungeon_section">
+                <h3><i class="fa-solid fa-book-journal-whills"></i> Lore Blocks</h3>
+                <div class="section_content">
+                    <p>Throughout the dungeons, you may stumble upon mysterious enchantment tables hidden in various rooms. These are known as Lore Blocks!</p>
+                    
+                    <div style="text-align: center; margin: 20px 0;">
+                        <img src="./images/loreblock.png" alt="Lore Block" style="width: 100%; max-width: 350px; border: 3px solid #20150F; border-radius: 10px; box-shadow: 5px 5px 0px #20150F;">
+                    </div>
+                    
+                    <p><strong>How to use:</strong> Players can click any enchantment table in the dungeon to read lore about the dungeon they are in. Be sure to click them when you see them, as they sometimes give hints on how to solve a nearby puzzle!</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Fire Temple -->
+        <article class="dungeon_card" id="fire" style="display: none;">
             <div class="dungeon_header">
                 <h2 class="dungeon_name">Fire Temple</h2>
                 <div class="dungeon_badges">
@@ -516,7 +582,7 @@
                             </li>
                             <li><strong>Section A (Left Path):</strong>
                                 <ul>
-                                    <li><strong>Room A1:</strong> Stand on the left pressure plate to reveal the path.</li>
+                                    <li><strong>Room A1:</strong> Stand on the left pressure plate and go through the revealed path.</li>
                                     <li><strong>Room A2:</strong> Complete the  lava parkour. Shoot the button on the wooden ceiling pillar to open the next room.</li>
                                     <li><strong>Room A3:</strong> Run through the cobweb-filled corridor and throw an item on the back pressure plate.</li>
                                     <li>Both groups must have an item on their plate to advance.</li>
@@ -524,7 +590,7 @@
                             </li>
                             <li><strong>Section B (Right Path):</strong>
                                 <ul>
-                                    <li><strong>Room B1:</strong> Stand on the south pressure plate to reveal the path.</li>
+                                    <li><strong>Room B1:</strong> Stand on the south pressure plate and go through the revealed path.</li>
                                     <li><strong>Room B2:</strong> Navigate the maze and throw an item on the pressure plate at the end.</li>
                                     <li>Continue along with Group A once done.</li>
                                 </ul>
@@ -866,7 +932,7 @@
                                     <li>The boss has 9 lives. Shoot all 6 minecarts inside its eyes to remove a life.</li>
                                     <li><em>Warning:</em> After its eyes are shot (and randomly thereafter), 3 of the 4 rows will be unsafe.</li>
                                     <li>You have a short amount of time to reach the safe platforms.</li>   
-                                    <li>The unsafe platforms will blow up and spawn zombies.</li>
+                                    <li>The unsafe platforms will give you Wither and spawn zombies.</li>
                                     <li><em>Tip:</em> The redstone lamps indicate the safe row of platforms.</li>
                                 </ul>
                             </li>
