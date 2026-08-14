@@ -31,17 +31,18 @@
             <button class="nav_btn active" data-target="general">
                 <i class="fa-solid fa-circle-info" style="margin-right: 12px; font-size: 14px;"></i> General Info
             </button>
+            
+            <button class="nav_btn" data-target="sewers">
+                <span class="diff_dot diff_easy"></span> Abandoned Sewers
+            </button>
 
             <button class="nav_btn" data-target="fire">
-                <span class="diff_dot diff_easy"></span> Fire Temple
+                <span class="diff_dot diff_moderate"></span> Fire Temple
             </button>
 
-            <button class="nav_btn" data-target="void">
-                <span class="diff_dot diff_moderate"></span> Void Ruins
-            </button>
 
             <button class="nav_btn" data-target="desert">
-                <span class="diff_dot diff_moderate"></span> Desert Hideout
+                <span class="diff_dot diff_hard"></span> Desert Hideout
             </button>
 
             <button class="nav_btn" data-target="tower">
@@ -131,12 +132,82 @@
             </div>
         </article>
 
+        <article class="dungeon_card" id="sewers" style="display: none;">
+            <div class="dungeon_header">
+                <h2 class="dungeon_name">Abandoned Sewers</h2>
+                <div class="dungeon_badges">
+                    <span class="badge diff_bg_easy"><i class="fa-solid fa-leaf"></i> Easy</span>
+                    <span class="badge content_badge"><i class="fa-solid fa-skull"></i> Zombies: Very Low</span>
+                    <span class="badge content_badge"><i class="fa-solid fa-person-running"></i> Parkour: Low</span>
+                    <span class="badge content_badge"><i class="fa-solid fa-puzzle-piece"></i> Puzzles: Low</span>
+                </div>
+            </div>
+            
+            <div class="dungeon_preview">
+                <img src="./images/sewers.png" alt="Abandoned Sewers Preview">
+            </div>
+            
+            <div class="dungeon_section">
+                <h3><i class="fa-solid fa-clipboard-list"></i> Requirements</h3>
+                <div class="section_content">
+                    <ul>
+                        <li><strong>None</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="dungeon_section">
+                <h3><i class="fa-solid fa-book-open"></i> Walkthrough</h3>
+                <div class="section_content">
+                    <ol>
+                        <li><strong>Sewer Control:</strong>
+                            <ul>
+                                <li>Parkour to the northeast side of the dungeon.</li>
+                                <li>Press the lever to create a fire.</li>
+                                <li>Stand near the fire to give yourself a fire trail particle effect.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Way to the Storage:</strong>
+                            <ul>
+                                <li>Parkour your way to the west side of the dungeon.</li>
+                                <li>Make sure to avoid coming in contact with water or you will have to get the fire again.</li>
+                                <li>Stand on the wool block to burn the cobwebs.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Storage:</strong>
+                            <ul>
+                                <li>The room will automatically start once all players are in the room.</li>
+                                <li>Seven silverfish will spawn, kill them all to proceed.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Room:</strong>
+                            <ul>
+                                <li>Claim your reward!</li>
+                                <li>Walk straight to exit.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="dungeon_section">
+                <h3><i class="fa-solid fa-gem"></i> Rewards</h3>
+                <h4 style="margin: 0 0 10px 0; font-size: 22px;"><i class="fa-solid fa-check-circle" style="color: #4df14d;"></i> Guaranteed Drop</h4>
+                <div class="reward_grid">
+                    <div class="reward_item">
+                        <img src="./images/acid.png" alt="Acid">
+                        <span>Acid Vial</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
         <!-- Fire Temple -->
         <article class="dungeon_card" id="fire" style="display: none;">
             <div class="dungeon_header">
                 <h2 class="dungeon_name">Fire Temple</h2>
                 <div class="dungeon_badges">
-                    <span class="badge diff_bg_easy"><i class="fa-solid fa-leaf"></i> Easy</span>
+                    <span class="badge diff_bg_moderate"><i class="fa-solid fa-spider"></i> Moderate</span>
                     <span class="badge content_badge"><i class="fa-solid fa-skull"></i> Zombies: Very Low</span>
                     <span class="badge content_badge"><i class="fa-solid fa-person-running"></i> Parkour: Very Low</span>
                     <span class="badge content_badge"><i class="fa-solid fa-puzzle-piece"></i> Puzzles: High</span>
@@ -222,84 +293,13 @@
             </div>
         </article>
 
-        <article class="dungeon_card" id="void" style="display: none;">
-            <div class="dungeon_header">
-                <h2 class="dungeon_name">Void Ruins</h2>
-                <div class="dungeon_badges">
-                    <span class="badge diff_bg_moderate"><i class="fa-solid fa-spider"></i> Moderate</span>
-                    <span class="badge content_badge"><i class="fa-solid fa-skull"></i> Zombies: None</span>
-                    <span class="badge content_badge"><i class="fa-solid fa-person-running"></i> Parkour: High</span>
-                    <span class="badge content_badge"><i class="fa-solid fa-puzzle-piece"></i> Puzzles: Low</span>
-                </div>
-            </div>
-            
-            <div class="dungeon_preview">
-                <img src="./images/voidruins.png" alt="Void Ruins Preview">
-            </div>
-            
-            <div class="dungeon_section">
-                <h3><i class="fa-solid fa-clipboard-list"></i> Requirements</h3>
-                <div class="section_content">
-                    <ul>
-                        <li><strong>Bow and Arrows:</strong> Required for activating buttons.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="dungeon_section">
-                <h3><i class="fa-solid fa-book-open"></i> Walkthrough</h3>
-                <div class="section_content">
-                    <ol>
-                        <li><strong>First Room:</strong>
-                            <ul>
-                                <li>Press the wooden button to activate the moving platforms, then carefully parkour to the end of the room.</li>
-                            </ul>
-                        </li>
-                        <li><strong>Second Room:</strong>
-                            <ul>
-                                <li>Press the wooden button to begin the timed parkour challenge.</li>
-                                <li>Move quickly! Once the fourth block spawns, the older blocks will start disappearing in the order they appeared.</li>
-                                <li>Step on the pressure plate at the end of the course to advance.</li>
-                            </ul>
-                        </li>
-                        <li><strong>Final Room:</strong>
-                            <ul>
-                                <li>Press the wooden button to set the platforms in motion. You must complete two sections (left and right) to unlock the loot room.</li>
-                                <li><strong>Left Side (Recommended First):</strong> Ride the starting platform toward the left area. Watch the wall for two wither skeleton skulls to turn into wooden buttons, then shoot them (soul flames will indicate they are activated).</li>
-                                <li>Jump to the newly spawned platform on the left and drop an item into the hole in the wall.</li>
-                                <li><strong>Right Side:</strong> Jump back onto the moving platforms and ride them over to the right area.</li>
-                                <li>Just like before, shoot the two wooden buttons on the wall to spawn a new platform, jump across, and drop an item into the hole.</li>
-                                <li><strong>Finishing the Room:</strong> Once items are dropped on both sides, the final pathway will appear.</li>
-                                <li>Ride the moving platform, jump to the final area, and press the button to teleport.</li>
-                            </ul>
-                        </li>
-                        <li><strong>Loot Room:</strong>
-                            <ul>
-                                <li>Claim your reward!</li>
-                                <li>Walk to the opposite side of the entrance to exit the dungeon.</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-            
-            <div class="dungeon_section">
-                <h3><i class="fa-solid fa-gem"></i> Rewards</h3>
-                <h4 style="margin: 0 0 10px 0; font-size: 22px;"><i class="fa-solid fa-check-circle" style="color: #4df14d;"></i> Guaranteed Drop</h4>
-                <div class="reward_grid">
-                    <div class="reward_item">
-                        <img src="./images/voidscroll.png" alt="Scroll">
-                        <span>Void Scroll</span>
-                    </div>
-                </div>
-            </div>
-        </article>
+        
 
             <article class="dungeon_card" id="desert" style="display: none;">
                 <div class="dungeon_header">
                     <h2 class="dungeon_name">Desert Hideout</h2>
                     <div class="dungeon_badges">
-                        <span class="badge diff_bg_moderate"><i class="fa-solid fa-spider"></i> Moderate</span>
+                        <span class="badge diff_bg_hard"><i class="fa-solid fa-skull"></i> Hard</span>
                         <span class="badge content_badge"><i class="fa-solid fa-skull"></i> Zombies: Medium</span>
                         <span class="badge content_badge"><i class="fa-solid fa-person-running"></i> Parkour: Medium</span>
                         <span class="badge content_badge"><i class="fa-solid fa-puzzle-piece"></i> Puzzles: Medium</span>
@@ -1004,7 +1004,67 @@
                 <div class="dungeon_section">
                     <h3><i class="fa-solid fa-book-open"></i> Walkthrough</h3>
                     <div class="section_content">
-                        <p>Coming soon!</p>
+                        <ol>
+                            <li><strong>Cave Opening:</strong>
+                                <ul>
+                                    <li>Each player must stand on a red carpet. Once stood on, the cave entrance will open.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Path A & B Split:</strong>
+                                <ul>
+                                    <li><em>Note: The group must split into two and complete both Path A and Path B separately to continue.</em></li>
+                                </ul>
+                            </li>
+                            <li><strong>Path A:</strong>
+                                <ul>
+                                    <li><strong>Lava Parkour:</strong> Stand on the stone pressure plate to summon a platform over the lava (have the other person help you just here). <em>Alternatively:</em> You can swim your way through using fire resistance.</li>
+                                    <li><strong>1 Block Timed Parkour:</strong> Press the button to summon a single timed block, make your way by jumping on this.</li>
+                                    <li><strong>Netherrack Wall Hallway:</strong> The netherrack walls that emit fire particles are shootable. Shoot them with an arrow and they will be destroyed. Jump into the lava pool that is emitting ender and flame particles.</li>
+                                    <li><strong>Rising Lava Parkour:</strong> Press the button to start the parkour. Every once in a while, the lava level will rise up so parkour your way up quickly. <em>Alternatively:</em> You can use fire resistance to bypass the entire parkour.</li>
+                                    <li><strong>Timed Block Parkour:</strong> Press the button to summon timed block parkour. Make your way up by doing 2 parkours like this.</li>
+                                    <li><strong>Pigmen Parkour Room:</strong> There is a stone pressure plate at the northwest side of the room. Press it to summon timed parkour. Quickly make your way up to the west side of the wall before the blocks despawn, then shoot the wooden button. Parkour your way up to the east side of the wall (not timed), and shoot the second wooden button. Once both are shot, the door will open.</li>
+                                    <li><strong>Lava Jump:</strong> Jump down to the next room. Make sure to press space as you fall, or you will land straight into lava (death).</li>
+                                    <li><strong>Arrow Target Room:</strong> Step on one of the west stone pressure plates to reveal a wooden button on the east side hidden behind a redstone lamp. Shoot the button once revealed; that will reveal another wooden button on the west side. Shooting both will open the path.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Path B:</strong>
+                                <ul>
+                                    <li><strong>Lava Parkour:</strong> Parkour your way to the other side. Drop down into the hole where there is a small parkour room.</li>
+                                    <li><strong>Pressure Plate Parkour:</strong> Parkour your way up to the bedrock and step on the stone pressure plate. Jump directly onto the stone pressure plate on the ground to open the door. <em>Note:</em> The ground pressure plate must be stepped on very quickly (almost simultaneously). Make your way up and jump onto a red carpet that emits flame particles.</li>
+                                    <li><strong>Giant Wave Room:</strong> Step on the 2 stone pressure plates to start the wave room. A large horde of zombies and 1 Giant will spawn; kill them all to proceed. Once killed, a red carpet emitting flame particles will be revealed, allowing you to teleport.</li>
+                                    <li><strong>Timed Bridge:</strong> Stepping on the pressure plate will spawn an obsidian bridge. Run your way through fast, as the bridge despawns very quickly.</li>
+                                    <li><strong>Lava Parkour:</strong> Parkour your way to the next hallway. At the end, you will find a 1-block hole, jump in. Make your way around to the next parkour area.</li>
+                                    <li><strong>Final Lava Parkour:</strong> Drop an item into a hole in the north side corner of the room. This will spawn blocks over the lava, allowing you to parkour your way across.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Meetup Door:</strong>
+                                <ul>
+                                    <li>Wait for your team to finish the other path.</li>
+                                    <li>Once both teams stand on the stone pressure plates, the door to the next room will open.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Boss Door:</strong>
+                                <ul>
+                                    <li>Shoot the netherrack pillar that is emitting flame particles.</li>
+                                    <li>This will reveal a stone button. Activating it will open the door to the boss.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Boss Room - The Zombie:</strong>
+                                <ul>
+                                    <li>The boss has 9 lives.</li>
+                                    <li>Shooting the eyes will reveal the heart, where you have to time it right to shoot it (it beats, closing and opening).</li>
+                                    <li>Shooting the heart will take away 1 life.</li>
+                                    <li><em>Warning:</em> Shooting the eyes will spawn zombies from its hands and start splashing Instant Damage potions into the middle area.</li>
+                                    <li>Shooting the heart will spawn pigmen from its mouth.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Loot Room:</strong>
+                                <ul>
+                                    <li>Once the Zombie is defeated, a red carpet emitting flame particles will spawn.</li>
+                                    <li>Teleport through it and claim your reward!</li>
+                                </ul>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class="dungeon_section">
