@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote | SunSMP</title>
+    
+    <!-- Google Fonts: Silkscreen for headers, Nunito for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN + Config) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        pixel: ['"Silkscreen"', 'monospace'],
+                        body: ['"Nunito"', 'sans-serif'],
+                    },
+                    colors: {
+                        sun: {
+                            light: '#FFF5E6',     
+                            card: '#FFE8CC',      
+                            orange: '#F49B36',    
+                            darkorange: '#D58326', 
+                            yellow: '#FFD166',    
+                            brown: '#4A3320',     
+                            purple: '#2A1B38',    
+                            carddark: '#3D2B4D',  
+                        }
+                    },
+                    boxShadow: {
+                        'block': '4px 4px 0px rgba(74, 51, 32, 1)', 
+                        'block-dark': '4px 4px 0px rgba(0, 0, 0, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased bg-sun-light">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-sun-light/95 backdrop-blur-sm border-b-2 border-sun-brown/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <a href="index.html">
+                        <img src="_icon 500x500.png" alt="SunSMP Horizontal Logo" class="h-12 object-contain drop-shadow-sm">
+                    </a>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="vote.html" class="font-pixel uppercase text-sun-brown underline decoration-2 decoration-sun-orange underline-offset-4 hover:text-sun-orange transition-colors text-sm">Vote</a>
+                    <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Wiki</a>
+                    <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Map</a>
+                    <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm">Store</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button class="text-sun-brown hover:text-sun-orange focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen relative overflow-hidden">
+        <!-- Subtle Top Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#FFE2C8]/40 to-transparent h-96 -z-10"></div>
+        
+        <!-- HEADER SECTION -->
+        <div class="pt-24 pb-12 text-center relative z-10 px-4">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <span class="text-sm">✨</span>
+                <span class="font-pixel text-sm text-sun-brown/70 uppercase tracking-widest">Earn free rewards</span>
+            </div>
+            <h1 class="font-pixel text-4xl md:text-5xl text-sun-brown mb-6">Vote for SunSMP!</h1>
+            <p class="font-body text-lg text-sun-brown/80 font-semibold max-w-2xl mx-auto">
+                Help us grow by voting daily!<br>
+                You can earn in-game rewards for voting!
+            </p>
+        </div>
+
+        <!-- DASHED DIVIDER -->
+        <div class="max-w-6xl mx-auto px-4 mb-16">
+            <div class="border-t-4 border-dashed border-sun-brown/30"></div>
+        </div>
+
+        <!-- MAIN VOTE LINKS -->
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 relative z-10">
+            
+            <h2 class="font-pixel text-2xl text-sun-brown mb-6 uppercase text-center">Voting Sites</h2>
+            <div class="space-y-4">
+                
+                <!-- Site 1 -->
+                <a href="https://www.planetminecraft.com/server/sunsmp/vote/" target="_blank" class="bg-[#FFE8CC] border-2 border-sun-brown rounded-lg shadow-block p-5 flex justify-between items-center hover:-translate-y-1 transition-transform duration-200 group">
+                    <span class="font-pixel text-sun-brown group-hover:text-sun-orange transition-colors text-sm sm:text-base">
+                        <span class="text-sun-brown/40 mr-4">01</span> Vote Site #1: Planet Minecraft
+                    </span>
+                    <svg class="w-5 h-5 text-sun-brown/40 group-hover:text-sun-orange transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+
+                <!-- Site 2 -->
+                <a href="https://minecraft-server-list.com/server/521126/vote/" target="_blank" class="bg-[#FFE8CC] border-2 border-sun-brown rounded-lg shadow-block p-5 flex justify-between items-center hover:-translate-y-1 transition-transform duration-200 group">
+                    <span class="font-pixel text-sun-brown group-hover:text-sun-orange transition-colors text-sm sm:text-base">
+                        <span class="text-sun-brown/40 mr-4">02</span> Vote Site #2: Minecraft Server List
+                    </span>
+                    <svg class="w-5 h-5 text-sun-brown/40 group-hover:text-sun-orange transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+
+                <!-- Site 3 -->
+                <a href="https://minecraftservers.org/vote/689035" target="_blank" class="bg-[#FFE8CC] border-2 border-sun-brown rounded-lg shadow-block p-5 flex justify-between items-center hover:-translate-y-1 transition-transform duration-200 group">
+                    <span class="font-pixel text-sun-brown group-hover:text-sun-orange transition-colors text-sm sm:text-base">
+                        <span class="text-sun-brown/40 mr-4">03</span> Vote Site #3: Minecraft Servers Org
+                    </span>
+                    <svg class="w-5 h-5 text-sun-brown/40 group-hover:text-sun-orange transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+
+                <!-- Site 4 -->
+                <a href="https://minecraft-mp.com/server/360313/vote/" target="_blank" class="bg-[#FFE8CC] border-2 border-sun-brown rounded-lg shadow-block p-5 flex justify-between items-center hover:-translate-y-1 transition-transform duration-200 group">
+                    <span class="font-pixel text-sun-brown group-hover:text-sun-orange transition-colors text-sm sm:text-base">
+                        <span class="text-sun-brown/40 mr-4">04</span> Vote Site #4: Minecraft-MP
+                    </span>
+                    <svg class="w-5 h-5 text-sun-brown/40 group-hover:text-sun-orange transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+
+                <!-- Site 5 -->
+                <a href="https://topminecraftservers.org/vote/43865" target="_blank" class="bg-[#FFE8CC] border-2 border-sun-brown rounded-lg shadow-block p-5 flex justify-between items-center hover:-translate-y-1 transition-transform duration-200 group">
+                    <span class="font-pixel text-sun-brown group-hover:text-sun-orange transition-colors text-sm sm:text-base">
+                        <span class="text-sun-brown/40 mr-4">05</span> Vote Site #5: Top Minecraft Server
+                    </span>
+                    <svg class="w-5 h-5 text-sun-brown/40 group-hover:text-sun-orange transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+
+            </div>
+
+            <!-- BEDROCK NOTICE -->
+            <div class="mt-16">
+                <div class="bg-[#FFE8CC] border-2 border-sun-brown rounded-lg shadow-block p-6 text-center">
+                    <p class="font-body font-semibold text-sun-brown/80 text-sm sm:text-base">
+                        <strong class="text-sun-brown font-bold">Bedrock:</strong> When voting, enter your username with BR_ in front. For example, if your name is Steve, vote as <strong class="text-sun-orange">BR_Steve</strong>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#1A0F24] py-8 border-t-4 border-sun-orange/20 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center">
+                <img src="_solo text.png" alt="SunSMP Logo" class="h-14 object-contain drop-shadow-sm">
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 font-pixel text-xs text-sun-light/60">
+                <a href="#" class="hover:text-sun-yellow transition-colors">Rules</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Staff</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Leaderboard</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Privacy</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Terms</a>
+            </div>
+
+            <div class="font-body text-xs text-sun-light/40 font-semibold text-center md:text-right">
+                Not affiliated with Mojang AB.<br>
+                &copy; 2026 SunSMP. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

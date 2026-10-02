@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunSMP | Best SMP</title>
+    
+    <!-- Google Fonts: Silkscreen for headers, Nunito for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <!-- Tailwind CSS (CDN + Config) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    pixel: ['"Silkscreen"', 'monospace'],
+                    body: ['"Nunito"', 'sans-serif'],
+                },
+                colors: {
+                    sun: {
+                        light: '#FFF5E6',     
+                        card: '#FFE8CC',      
+                        orange: '#F49B36',    
+                        darkorange: '#D58326', 
+                        yellow: '#FFD166',    
+                        brown: '#4A3320',     
+                        purple: '#2A1B38',    
+                        carddark: '#3D2B4D',  
+                    }
+                },
+                boxShadow: {
+                    'block': '4px 4px 0px rgba(74, 51, 32, 1)', 
+                    'block-dark': '4px 4px 0px rgba(0, 0, 0, 0.4)',
+                },
+                // Add these two blocks for the clouds:
+                keyframes: {
+                    moveCloud: {
+                        '0%': { transform: 'translateX(0)' },
+                        '100%': { transform: 'translateX(120vw)' }
+                    }
+                },
+                animation: {
+                'cloud-1': 'moveCloud 40s linear infinite -10s',
+                
+                'cloud-2': 'moveCloud 25s linear infinite -15s',
+                
+                'cloud-3': 'moveCloud 35s linear infinite -25s'
+}
+            }
+        }
+    }
+</script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body class="antialiased">
+
+    <nav class="sticky top-0 z-50 bg-sun-light/95 backdrop-blur-sm border-b-2 border-sun-brown/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <!-- Horizontal Logo Element -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <img src="./images/_icon500x500.png" alt="SunSMP Horizontal Logo" class="h-12 object-contain drop-shadow-sm">
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="./vote" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Vote</a>
+                    <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Wiki</a>
+                    <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Map</a>
+                    <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm">Store</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-sun-brown hover:text-sun-orange focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="relative pt-8 pb-32 overflow-hidden">
+            <!-- Sunset Background gradient & shapes -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#FFD166]/30 via-[#FF8C42]/20 to-sun-light -z-20"></div>
+            
+            <!-- CSS Sun -->
+            <div class="absolute top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-sun-yellow/40 rounded-full blur-2xl -z-10"></div>
+            
+            <!-- Particles Container -->
+            <div id="particles" class="absolute inset-0 -z-10 overflow-hidden"></div>
+
+            <!-- Cloud 1 (Medium speed, starts mid-left) -->
+            <div class="absolute top-[10%] -left-[200px] opacity-70 -z-10 flex flex-col items-center animate-cloud-1">
+                <div class="w-8 h-3 bg-[#FFFCF8]"></div>
+                <div class="w-16 h-3 bg-[#FFFCF8]"></div>
+                <div class="w-24 h-3 bg-[#FFFCF8]"></div>
+            </div>
+
+            <!-- Cloud 2 (Fastest, smaller, starts past middle) -->
+            <div class="absolute top-[25%] -left-[200px] opacity-50 -z-10 flex flex-col items-center animate-cloud-2">
+                <div class="w-6 h-2 bg-[#FFFCF8]"></div>
+                <div class="w-12 h-2 bg-[#FFFCF8]"></div>
+                <div class="w-20 h-2 bg-[#FFFCF8]"></div>
+            </div>
+
+            <!-- Cloud 3 (Largest, starts far right) -->
+            <div class="absolute top-[15%] -left-[200px] opacity-80 -z-10 flex flex-col items-center animate-cloud-3">
+                <div class="w-10 h-4 bg-[#FFFCF8]"></div>
+                <div class="w-20 h-4 bg-[#FFFCF8]"></div>
+                <div class="w-32 h-4 bg-[#FFFCF8]"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <!-- Main Stylized Text Logo area continues here... -->
+                <!-- Main Stylized Text Logo area -->
+                <div class="mb-6 flex justify-center">
+                    <div class="relative w-full px-4 sm:px-0">
+                        <img src="./images/_logo 1500x1500.png" alt="SunSMP Logo Text" class="w-64 md:w-96 max-w-md mx-auto relative z-10 drop-shadow-xl animate-logo">                 
+                    </div>
+                </div>
+
+                <p class="text-lg md:text-xl text-sun-brown/80 font-pixel tracking-wide mb-8 max-w-2xl mx-auto mt-8">
+                    A friendly survival server with exciting adventures.<br>
+                    Chase the sunset, build your perfect home, and make friends.
+                </p>
+
+                <!-- Live Player Count Badge -->
+                <div class="inline-flex items-center gap-2 bg-sun-card border-2 border-sun-brown/20 px-4 py-1.5 rounded-full mb-10">
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse border border-green-700"></div>
+                    <span id="live-player-count" class="font-body font-bold text-sm text-sun-brown">Loading players...</span>
+                </div>
+
+                <!-- IP Copy Box -->
+                <div class="max-w-[34rem] mx-auto mb-8">
+                    <div class="bg-sun-card border-[3px] border-sun-brown rounded-lg flex flex-row items-stretch p-2 relative">
+                        
+                        <div class="flex flex-col justify-center px-2 sm:px-4 leading-none text-sun-brown/50 border-r-2 border-sun-brown/10 flex-shrink-0">
+                            <span class="font-pixel text-[10px] uppercase tracking-wider mb-1">Server</span>
+                            <span class="font-pixel text-[10px] uppercase tracking-wider text-center">IP</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-center flex-1 px-2 sm:px-4 overflow-hidden">
+                            <span class="font-pixel text-sm sm:text-xl text-sun-brown uppercase tracking-widest truncate -mt-[2px]" id="server-ip">PLAY.SUNSMP.COM</span>
+                        </div>
+                        
+                        <!-- Clickable Button Area -->
+                        <div class="bg-sun-orange text-sun-light font-body font-bold text-xs sm:text-sm whitespace-nowrap w-[105px] sm:w-[130px] h-10 sm:h-12 flex-shrink-0 mb-[4px] rounded-md flex items-center justify-center transition-transform active:translate-y-1 cursor-pointer select-none" style="box-shadow: 0 4px 0 #D58326;" id="copy-text" onclick="copyIP(event, 'top')">
+                            <span class="mt-[2px] sm:mt-0">Click to copy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://discord.gg/sunsmp" target="_blank" rel="noopener noreferrer" class="btn-mc btn-secondary px-6 py-3 text-sm sm:text-base w-full sm:w-auto">
+                        <svg class="w-5 h-5 mr-3 -mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3333-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3333-.946 2.4189-2.1568 2.4189Z"/></svg>
+                        Discord
+                    </a>
+                    <a href="./vote" class="btn-mc btn-secondary px-8 py-3 text-sm sm:text-base w-full sm:w-auto">Vote</a>
+                    <a href="https://store.sunsmp.com" target="_blank" class="btn-mc btn-primary px-8 py-3 text-sm sm:text-base w-full sm:w-auto">Store</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY SUNSMP SECTION -->
+        <section class="py-20 bg-[#F4E3CB] relative">
+            
+            <!-- Blocky Transition (Matches #F4E3CB background exactly) -->
+            <div class="absolute top-0 left-0 w-full h-6 -translate-y-full z-20 pointer-events-none" style="background-image: url('data:image/svg+xml;utf8,<svg width=\'64\' height=\'24\' viewBox=\'0 0 64 24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0,24 V16 H4 V12 H12 V16 H20 V8 H28 V12 H36 V4 H44 V12 H52 V8 H60 V16 H64 V24 Z\' fill=\'%23F4E3CB\'/></svg>'); background-repeat: repeat-x; background-size: 64px 24px; background-position: bottom left;"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center gap-2 mb-2">
+                        <div class="w-2 h-2 bg-sun-orange"></div>
+                        <span class="font-pixel text-sm text-sun-orange uppercase tracking-widest">Our Features</span>
+                        <div class="w-2 h-2 bg-sun-orange"></div>
+                    </div>
+                    <h2 class="font-pixel text-4xl md:text-5xl text-sun-brown">SunSMP Exclusive</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="bg-sun-card border-2 border-sun-brown rounded-lg shadow-block p-6 md:col-span-2 flex flex-col sm:flex-row gap-6 items-center transition-transform hover:-translate-y-1 duration-300">
+                        <!-- Updated Image Container -->
+                        <div class="w-full sm:w-2/5 h-32 bg-[#E6D5B8] rounded border border-sun-brown/20 flex items-center justify-center relative overflow-hidden">
+                            <img src="./images/economy.png" alt="SunSMP Economy" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="w-full sm:w-3/5">
+                            <h3 class="font-pixel text-xl text-sun-brown mb-3">SunSMP Economy</h3>
+                            <p class="font-body text-sun-brown/80 font-semibold leading-relaxed">
+                                Discover countless custom ways to make and spend money! Trade with players at the public mall, invest your wealth in custom Bling jewelry, or visit the daily Black Market.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-sun-card border-2 border-sun-brown rounded-lg shadow-block p-6 flex flex-col transition-transform hover:-translate-y-1 duration-300">
+                        <!-- Updated Icon Container -->
+                        <div class="w-12 h-12 mb-4 flex items-center justify-center overflow-hidden">
+                            <img src="./images/rank.png" alt="Rank Badge" class="w-full h-full object-contain">
+                        </div>
+                        <h3 class="font-pixel text-xl text-sun-brown mb-3">21 Ranks to Climb</h3>
+                        <p class="font-body text-sun-brown/80 font-semibold text-sm">
+                            Every rank unlocks new perks, homes, and cosmetics completely for free just by playing the game. Watch your badge upgrade as you go!
+                        </p>
+                    </div>
+
+                    <div class="bg-sun-card border-2 border-sun-brown rounded-lg shadow-block p-6 flex flex-col transition-transform hover:-translate-y-1 duration-300">
+                        <h3 class="font-pixel text-2xl text-sun-brown mb-1">Over 250+</h3>
+                        <h4 class="font-pixel text-sm text-sun-orange mb-3">Furniture, Cosmetics, and Decorations</h4>
+                        <p class="font-body text-sun-brown/80 font-semibold text-sm mt-auto">
+                            Level up your builds with furniture and decorations you can't find in vanilla! Collect regular and seasonal cosmetics using in-game money, and join server events to earn limited-edition models.
+                        </p>
+                    </div>
+
+                    <div class="bg-sun-card border-2 border-sun-brown rounded-lg shadow-block p-6 flex flex-col transition-transform hover:-translate-y-1 duration-300">
+                        <h3 class="font-pixel text-2xl text-sun-brown mb-1">Custom Dungeons</h3>
+                        <h4 class="font-pixel text-sm text-sun-orange mb-3">Zelda-Inspired</h4>
+                        <div class="flex items-start gap-3 mt-auto">
+                            <!-- Updated Icon Container -->
+                            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center">
+                                <img src="./images/dungeon.png" alt="Dungeon" class="w-full h-full object-contain">
+                            </div>
+                            <p class="font-body text-sun-brown/80 font-semibold text-sm">
+                                Try our custom, command block-powered dungeons! Our dungeons are built with dynamic puzzles and engaging mechanics.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-sun-card border-2 border-sun-brown rounded-lg shadow-block p-6 md:col-span-1 lg:col-span-1 flex flex-col transition-transform hover:-translate-y-1 duration-300">
+                        <h3 class="font-pixel text-2xl text-sun-brown mb-1">PyroFishing</h3>
+                        <h4 class="font-pixel text-sm text-sun-orange mb-3">Custom Fishing</h4>
+                        <div class="flex items-start gap-3 mt-auto">
+                            <!-- Updated Icon Container -->
+                            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center">
+                                <img src="./images/fish.png" alt="Fish" class="w-full h-full object-contain">
+                            </div>
+                            <p class="font-body text-sun-brown/80 font-semibold text-sm">
+                                Try our custom Pyrofishing experience! Unlike typical fishing, you can catch rare fish variants and upgrade your rod with powerful custom enchants.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEATH THE SURFACE SECTION -->
+        <section class="relative bg-[#322E3A] pt-24 pb-24">
+            
+            <!-- Blocky Transition (Matches #322E3A background exactly) -->
+            <div class="absolute top-0 left-0 w-full h-6 -translate-y-full z-20 pointer-events-none" style="background-image: url('data:image/svg+xml;utf8,<svg width=\'64\' height=\'24\' viewBox=\'0 0 64 24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0,24 V16 H4 V12 H12 V16 H20 V8 H28 V12 H36 V4 H44 V12 H52 V8 H60 V16 H64 V24 Z\' fill=\'%23322E3A\'/></svg>'); background-repeat: repeat-x; background-size: 64px 24px; background-position: bottom left;"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                
+                <div class="inline-flex items-center justify-center gap-2 mb-4 w-full">
+                    <span class="text-sm">📸</span>
+                    <span class="font-pixel text-[10px] sm:text-xs text-sun-light/60 uppercase tracking-widest mt-1">Our favorite moments!</span>
+                </div>
+                <h2 class="font-pixel text-2xl sm:text-3xl md:text-4xl text-sun-light mb-12 uppercase tracking-wide drop-shadow-md">Server Gallery</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Image 1 -->
+                    <div class="bg-[#292531] border-t-4 border-l-4 border-[#1A1721] border-b-4 border-r-4 border-[#433E4D] p-2 h-48 sm:h-56">
+                        <div class="w-full h-full overflow-hidden relative group cursor-pointer border border-white/5">
+                            <img src="./images/1.png" alt="SunSMP Gallery 1" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        </div>
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="bg-[#292531] border-t-4 border-l-4 border-[#1A1721] border-b-4 border-r-4 border-[#433E4D] p-2 h-48 sm:h-56">
+                        <div class="w-full h-full overflow-hidden relative group cursor-pointer border border-white/5">
+                            <img src="./images/2.png" alt="SunSMP Gallery 2" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        </div>
+                    </div>
+                    <!-- Image 3 -->
+                    <div class="bg-[#292531] border-t-4 border-l-4 border-[#1A1721] border-b-4 border-r-4 border-[#433E4D] p-2 h-48 sm:h-56">
+                        <div class="w-full h-full overflow-hidden relative group cursor-pointer border border-white/5">
+                            <img src="./images/3.png" alt="SunSMP Gallery 3" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Image 4 -->
+                    <div class="bg-[#292531] border-t-4 border-l-4 border-[#1A1721] border-b-4 border-r-4 border-[#433E4D] p-2 h-48 sm:h-56">
+                        <div class="w-full h-full overflow-hidden relative group cursor-pointer border border-white/5">
+                            <img src="./images/4.png" alt="SunSMP Gallery 4" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        </div>
+                    </div>
+                    <!-- Image 5 -->
+                    <div class="bg-[#292531] border-t-4 border-l-4 border-[#1A1721] border-b-4 border-r-4 border-[#433E4D] p-2 h-48 sm:h-56">
+                        <div class="w-full h-full overflow-hidden relative group cursor-pointer border border-white/5">
+                            <img src="./images/5.png" alt="SunSMP Gallery 5" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        </div>
+                    </div>
+                    <!-- Image 6 -->
+                    <div class="bg-[#292531] border-t-4 border-l-4 border-[#1A1721] border-b-4 border-r-4 border-[#433E4D] p-2 h-48 sm:h-56">
+                        <div class="w-full h-full overflow-hidden relative group cursor-pointer border border-white/5">
+                            <img src="./images/6.png" alt="SunSMP Gallery 6" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </section>
+
+        <!-- JOIN SECTION -->
+        <section class="relative bg-sun-purple py-24 pt-24" id="join">
+
+            <!-- Blocky Transition (Matches #2A1B38 background exactly) -->
+            <div class="absolute top-0 left-0 w-full h-6 -translate-y-full z-20 pointer-events-none" style="background-image: url('data:image/svg+xml;utf8,<svg width=\'64\' height=\'24\' viewBox=\'0 0 64 24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0,24 V16 H4 V12 H12 V16 H20 V8 H28 V12 H36 V4 H44 V12 H52 V8 H60 V16 H64 V24 Z\' fill=\'%232A1B38\'/></svg>'); background-repeat: repeat-x; background-size: 64px 24px; background-position: bottom left;"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                
+                <div class="inline-flex items-center justify-center gap-2 mb-4 w-full">
+                    <span class="text-sm">☀️</span>
+                    <span class="font-pixel text-sm text-sun-yellow uppercase tracking-widest">Join the community</span>
+                </div>
+                
+                <h2 class="font-pixel text-4xl md:text-5xl text-sun-light mb-12">How To Join</h2>
+
+                <!-- Version Tabs for Java / Bedrock -->
+                <div class="flex justify-center gap-4 mb-12">
+                    <button id="tab-java" onclick="switchTab('java')" class="btn-mc bg-sun-yellow text-sun-purple border-2 border-sun-orange shadow-[0_4px_0_#D96A20] px-6 py-2 transition-all">Java Edition</button>
+                    <button id="tab-bedrock" onclick="switchTab('bedrock')" class="btn-mc bg-sun-carddark text-sun-light border-2 border-[#4A3B5D] shadow-[0_4px_0_#1A0F24] px-6 py-2 opacity-70 hover:opacity-100 transition-all">Bedrock</button>
+                </div>
+
+                <!-- JAVA STEPS -->
+                <div id="steps-java" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left mb-16">
+                    <div class="bg-sun-carddark border-2 border-[#4A3B5D] rounded-lg p-6 shadow-block-dark relative overflow-hidden group hover:border-sun-yellow transition-colors">
+                        <div class="font-pixel text-3xl text-sun-yellow mb-4">1</div>
+                        <h4 class="font-pixel text-lg text-sun-light mb-2">Open Minecraft</h4>
+                        <p class="font-body text-sun-light/70 text-sm font-semibold">Java Edition<br>Version 1.20.4 or newer</p>
+                    </div>
+                    <div class="bg-sun-carddark border-2 border-[#4A3B5D] rounded-lg p-6 shadow-block-dark relative overflow-hidden group hover:border-sun-yellow transition-colors">
+                        <div class="font-pixel text-3xl text-sun-yellow mb-4">2</div>
+                        <h4 class="font-pixel text-lg text-sun-light mb-2">Multiplayer</h4>
+                        <p class="font-body text-sun-light/70 text-sm font-semibold">Click on Multiplayer, then click "Add Server" at the bottom.</p>
+                    </div>
+                    <div class="bg-sun-carddark border-2 border-[#4A3B5D] rounded-lg p-6 shadow-block-dark relative overflow-hidden group hover:border-sun-yellow transition-colors flex flex-col justify-between">
+                        <div>
+                            <div class="font-pixel text-3xl text-sun-yellow mb-4">3</div>
+                            <h4 class="font-pixel text-lg text-sun-light mb-2">Enter Address</h4>
+                            <div class="bg-[#1A0F24] p-2 rounded border border-black/50 font-pixel text-sun-orange text-xs mb-3 text-center">
+                                play.sunsmp.com
+                            </div>
+                        </div>
+                        <button onclick="copyIP(event, 'step3')" class="w-full bg-sun-yellow/20 hover:bg-sun-yellow/40 text-sun-yellow font-pixel text-xs py-1.5 rounded border border-sun-yellow/50 transition-colors mt-auto">Copy</button>
+                    </div>
+                    <div class="bg-sun-carddark border-2 border-[#4A3B5D] rounded-lg p-6 shadow-block-dark relative overflow-hidden group hover:border-sun-yellow transition-colors">
+                        <div class="font-pixel text-3xl text-sun-yellow mb-4">4</div>
+                        <h4 class="font-pixel text-lg text-sun-light mb-2">Join & Play!</h4>
+                        <p class="font-body text-sun-light/70 text-sm font-semibold">Connect to the server. You'll spawn right in the sunset village!</p>
+                    </div>
+                </div>
+
+                <!-- BEDROCK STEPS -->
+                <div id="steps-bedrock" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left mb-16 hidden">
+                    <div class="bg-sun-carddark border-2 border-[#4A3B5D] rounded-lg p-6 shadow-block-dark relative overflow-hidden group hover:border-sun-yellow transition-colors">
+                        <div class="font-pixel text-3xl text-sun-yellow mb-4">1</div>
+                        <h4 class="font-pixel text-lg text-sun-light mb-2">Open Minecraft</h4>
+                        <p class="font-body text-sun-light/70 text-sm font-semibold">Launch Bedrock Edition and click on the "Play" button.</p>
+                    </div>
+                    <div class="bg-sun-carddark border-2 border-[#4A3B5D] rounded-lg p-6 shadow-block-dark relative overflow-hidden group hover:border-sun-yellow transition-colors">
+                        <div class="font-pixel text-3xl text-sun-yellow mb-4">2</div>
+                        <h4 class="font-pixel text-lg text-sun-light mb-2">Servers Tab</h4>
+                        <p class="font-body text-sun-light/70 text-sm font-semibold">Navigate to the "Servers" tab, scroll down, and click "Add Server".</p>
+                    </div>
+                    <div class="bg-sun-carddark border-2 border-[#4A3B5D] rounded-lg p-6 shadow-block-dark relative overflow-hidden group hover:border-sun-yellow transition-colors flex flex-col justify-between">
+                        <div>
+                            <div class="font-pixel text-3xl text-sun-yellow mb-4">3</div>
+                            <h4 class="font-pixel text-lg text-sun-light mb-2">Enter Details</h4>
+                            <!-- Added whitespace-nowrap, reduced p-2 to p-1.5, and adjusted text sizing to fit -->
+                            <div class="bg-[#1A0F24] p-1.5 rounded border border-black/50 font-pixel text-[9px] sm:text-[11px] mb-3 leading-relaxed whitespace-nowrap">
+                                <span class="text-sun-light/50">Name:</span> <span class="text-sun-light">SunSMP</span><br>
+                                <span class="text-sun-light/50">IP:</span> <span class="text-sun-orange">play.sunsmp.com</span><br>
+                                <span class="text-sun-light/50">Port:</span> <span class="text-sun-yellow">19132</span>
+                            </div>
+                        </div>
+                        <button onclick="copyIP(event, 'step3bedrock')" class="w-full bg-sun-yellow/20 hover:bg-sun-yellow/40 text-sun-yellow font-pixel text-xs py-1.5 rounded border border-sun-yellow/50 transition-colors mt-auto">Copy IP</button>
+                    </div>
+                    <div class="bg-sun-carddark border-2 border-[#4A3B5D] rounded-lg p-6 shadow-block-dark relative overflow-hidden group hover:border-sun-yellow transition-colors">
+                        <div class="font-pixel text-3xl text-sun-yellow mb-4">4</div>
+                        <h4 class="font-pixel text-lg text-sun-light mb-2">Join & Play!</h4>
+                        <p class="font-body text-sun-light/70 text-sm font-semibold">Click "Add and Play" to join the village instantly!</p>
+                    </div>
+                </div>
+
+                <!-- Final CTA -->
+                <div class="border-t border-white/10 pt-12">
+                    <h3 class="font-pixel text-2xl text-sun-light mb-6">Join SunSMP</h3>
+                    <p class="font-body text-sun-light/60 font-semibold mb-8 uppercase tracking-wider text-sm">
+                        Both Java & Bedrock Supported
+                    </p>
+                    
+                    <div class="inline-block bg-[#1A0F24] border-2 border-sun-yellow/30 p-2 rounded-lg cursor-pointer hover:border-sun-yellow transition-colors mb-8 group" onclick="copyIP(event, 'bottom')">
+                        <div class="flex items-center gap-4 px-4 py-2 relative">
+                            <span class="font-pixel text-xl sm:text-3xl text-sun-yellow">play.sunsmp.com</span>
+                            <span id="bottom-copy-text" class="font-body text-sm text-sun-light/50 font-bold group-hover:text-sun-light/90 w-[100px] text-center inline-block transition-colors duration-200">Click to copy</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center gap-4">
+                        <a href="https://discord.gg/sunsmp" target="_blank" rel="noopener noreferrer" class="btn-mc bg-sun-yellow text-sun-brown border-2 border-[#B8964A] shadow-[0_4px_0_#9E813F] w-[140px] sm:w-[160px] py-3 hover:bg-[#FFE082]">Discord</a>
+                        <a href="https://store.sunsmp.com" target="_blank" class="btn-mc bg-sun-carddark text-sun-light border-2 border-[#4A3B5D] shadow-[0_4px_0_#1A0F24] w-[140px] sm:w-[160px] py-3 hover:bg-[#4A3B5D]">Store</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#1A0F24] py-8 border-t-4 border-sun-orange/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center">
+                <img src="./images/_solo text.png" alt="SunSMP Logo" class="h-14 object-contain drop-shadow-sm">
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 font-pixel text-xs text-sun-light/60">
+                <a href="#" class="hover:text-sun-yellow transition-colors">Rules</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Staff</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Leaderboard</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Privacy</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Terms</a>
+            </div>
+
+            <div class="font-body text-xs text-sun-light/40 font-semibold text-center md:text-right">
+                Not affiliated with Mojang AB.<br>
+                &copy; 2026 SunSMP. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

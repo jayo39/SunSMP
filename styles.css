@@ -1,0 +1,122 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    color: #4A3320;
+    background-color: #FFF5E6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-pixel {
+    font-family: 'Silkscreen', monospace !important;
+}
+
+/* Cozy Minecraft-style Button */
+.btn-mc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Silkscreen', monospace !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.1s ease;
+    position: relative;
+    user-select: none;
+    border-radius: 4px;
+}
+
+/* Primary Button (Orange) */
+.btn-primary {
+    background-color: #F49B36;
+    color: #FFF5E6;
+    border: 3px solid #4A3320; /* Darker border matching reference */
+    box-shadow: 0 4px 0 #4A3320; /* Solid dark block shadow */
+}
+.btn-primary:active {
+    box-shadow: 0 0px 0 #4A3320;
+    transform: translateY(4px);
+}
+.btn-primary:hover {
+    background-color: #FFAA47;
+}
+
+/* Secondary Button (Cream) */
+.btn-secondary {
+    background-color: #FFE8CC;
+    color: #4A3320;
+    border: 3px solid #4A3320;
+    box-shadow: 0 4px 0 #4A3320; 
+}
+.btn-secondary:active {
+    box-shadow: 0 0px 0 #4A3320;
+    transform: translateY(4px);
+}
+.btn-secondary:hover {
+    background-color: #FFF5E6;
+}
+
+/* IP Copy Box Interaction Styles */
+.ip-box {
+    transition: transform 0.1s ease;
+}
+.ip-box:active {
+    transform: scale(0.98);
+}
+
+/* Particles */
+.particle {
+    position: absolute;
+    background-color: #FFD166;
+    border-radius: 2px;
+    opacity: 0.6;
+    animation: float 10s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+::selection {
+    background-color: #F49B36;
+    color: white;
+}
+
+/* Jagged SVG Border between sections */
+.pixel-divider {
+    width: 100%;
+    height: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L10 30L20 40L30 30L40 40V0H0V40Z' fill='%23FFF5E6'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    position: absolute;
+    top: -39px;
+    left: 0;
+    z-index: 10;
+}
+
+/* Animations */
+@-webkit-keyframes logo {
+    0% { -webkit-transform: scale(1); transform: scale(1); }
+    50% { -webkit-transform: scale(1.05); transform: scale(1.05); }
+    100% { -webkit-transform: scale(1); transform: scale(1); }
+}
+
+@keyframes logo {
+    0% { -webkit-transform: scale(1); transform: scale(1); }
+    50% { -webkit-transform: scale(1.05); transform: scale(1.05); }
+    100% { -webkit-transform: scale(1); transform: scale(1); }
+}
+
+/* Class to trigger the animation */
+.animate-logo {
+    -webkit-animation: logo 3s ease-in-out infinite;
+    animation: logo 3s ease-in-out infinite;
+}
+
+/* Cloud Floating Animation */
+@keyframes moveCloud {
+    0% { transform: translateX(-20vw); }
+    100% { transform: translateX(120vw); }
+}
