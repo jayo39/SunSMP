@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki | SunSMP</title>
+    
+    <!-- Google Fonts: Silkscreen for headers, Nunito for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    
+    <!-- Tailwind CSS (CDN + Config) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        pixel: ['"Silkscreen"', 'monospace'],
+                        body: ['"Nunito"', 'sans-serif'],
+                    },
+                    colors: {
+                        sun: {
+                            light: '#FFF5E6',     
+                            card: '#FFE8CC',      
+                            orange: '#F49B36',    
+                            darkorange: '#D58326', 
+                            yellow: '#FFD166',    
+                            brown: '#4A3320',     
+                            purple: '#2A1B38',    
+                            carddark: '#3D2B4D',  
+                        }
+                    },
+                    boxShadow: {
+                        'block': '4px 4px 0px rgba(74, 51, 32, 1)', 
+                        'block-dark': '4px 4px 0px rgba(0, 0, 0, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Small triangle bullet points for sidebar */
+        .sidebar-link::before {
+            content: "▸";
+            margin-right: 8px;
+            font-size: 0.8rem;
+            color: #4A3320;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="antialiased bg-sun-light">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-sun-light/95 backdrop-blur-sm border-b-2 border-sun-brown/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <a href="/">
+                        <img src="./images/_icon500x500.png" alt="SunSMP Horizontal Logo" class="h-12 object-contain drop-shadow-sm">
+                    </a>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="./vote.html" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Vote</a>
+                    <a href="./wiki.html" class="font-pixel uppercase text-sun-brown underline decoration-2 decoration-sun-orange underline-offset-4 hover:text-sun-orange transition-colors text-sm">Wiki</a>
+                    <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Map</a>
+                    <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm">Store</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-sun-brown hover:text-sun-orange focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-sun-light/95 backdrop-blur-sm border-t border-sun-brown/10">
+            <div class="px-4 pt-2 pb-4 space-y-2 flex flex-col">
+                <a href="./vote.html" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Vote</a>
+                <a href="./wiki.html" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Wiki</a>
+                <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Map</a>
+                <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm py-2">Store</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN TWO-COLUMN WIKI LAYOUT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row gap-8 lg:gap-12 min-h-screen">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-full md:w-1/4 flex-shrink-0">
+            <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider">WIKI</h2>
+            
+            <div class="border-t border-sun-brown/20 mb-6"></div>
+
+            <!-- Search Bar -->
+            <input type="text" placeholder="Search wiki..." class="w-full bg-sun-light border border-sun-brown/30 rounded px-3 py-2 text-sm font-body text-sun-brown focus:outline-none focus:border-sun-orange focus:ring-1 focus:ring-sun-orange mb-8 transition-colors">
+
+            <!-- Category Links -->
+            <ul class="space-y-6 font-pixel text-sm tracking-wider">
+                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">GETTING STARTED</a></li>
+                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">ECONOMY</a></li>
+                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">RANKS</a></li>
+                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">CLAIMING</a></li>
+                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">FISHING</a></li>
+                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">DUNGEONS</a></li>
+            </ul>
+        </aside>
+
+        <!-- VERTICAL DIVIDER (Visible on md+ screens) -->
+        <div class="hidden md:block w-px bg-sun-brown/20"></div>
+
+        <!-- MAIN CONTENT -->
+        <div class="w-full md:w-3/4 pb-20">
+            
+            <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Welcome to SunSMP</h1>
+            <p class="font-body text-sm text-sun-brown/60 italic mb-8">Last updated: Oct 2, 2026</p>
+
+            <div class="border-t border-sun-brown/20 mb-8"></div>
+
+            <!-- WHAT IS SUNSMP -->
+            <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">What is SunSMP?</h2>
+            
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-6">
+                We are a dedicated, grief-free survival community focused on collaborative gameplay, custom economies, and player interaction. We've taken the vanilla Minecraft experience and upgraded it with features designed for builders and adventurers alike.
+            </p>
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                 In this brand-new server, you can make friends, build your dream base, and enjoy optional PvP without ever losing your items—plus so much more!
+            </p>
+
+            <div class="border-t border-sun-brown/20 mb-8"></div>
+
+            <!-- ESSENTIAL COMMANDS TABLE -->
+            <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">Main Commands</h2>
+            
+            <div class="overflow-x-auto mb-10 border-t border-sun-brown/20">
+                <table class="w-full text-left font-body">
+                    <thead>
+                        <tr class="border-b border-sun-brown/20">
+                            <th class="py-4 pr-4 font-body font-bold text-sun-brown w-1/3">Command</th>
+                            <th class="py-4 font-body font-bold text-sun-brown">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sun-brown/90">
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/spawn</span>
+                            </td>
+                            <td class="py-4">Teleport to SunSMP spawn</td>
+                        </tr>
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/rtp</span>
+                            </td>
+                            <td class="py-4">Random teleport to wilderness</td>
+                        </tr>
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/back</span>
+                            </td>
+                            <td class="py-4">Return to your previous location</td>
+                        </tr>
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/sethome &lt;name&gt;</span>
+                            </td>
+                            <td class="py-4">Save your current location</td>
+                        </tr>
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/home &lt;name&gt;</span>
+                            </td>
+                            <td class="py-4">Teleport to a saved home</td>
+                        </tr>
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/tpa &lt;username&gt;</span>
+                            </td>
+                            <td class="py-4">Request to teleport to another player</td>
+                        </tr>
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/tpahere &lt;username&gt; </span>
+                            </td>
+                            <td class="py-4">Request another player to teleport to your location</td>
+                        </tr>
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/shop</span>
+                            </td>
+                            <td class="py-4">Access the in-game shop to purchase items</td>
+                        </tr>
+                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                            <td class="py-4 pr-4">
+                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/pshop</span>
+                            </td>
+                            <td class="py-4">Teleport to player shops to buy and sell items</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SERVER FEATURES TITLE -->
+            <div class="border-t border-sun-brown/20 mb-8 mt-12"></div>
+            <h2 class="font-pixel text-xl text-sun-brown mb-10 tracking-wider uppercase">Server Features</h2>
+            
+            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Economy</h3>
+            <!-- Placeholder for economy content based on the layout -->
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                Discover countless custom ways to make and spend money! Trade with players at the public mall, invest your wealth in custom Bling jewelry, or visit the daily Black Market.
+            </p>
+
+            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Land Claiming</h3>
+            <!-- Placeholder for claiming content based on the layout -->
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                Claim your land using a golden shovel! Right-click two opposite corners to claim a rectangular area, allowing you to build in peace without the worry of griefing.
+            </p>
+
+            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Custom Furniture & Items</h3>
+            <!-- Placeholder for furniture content based on the layout -->
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                Standard blocks not enough? We've added custom decorative furniture and items so you can detail your builds exactly how you want.
+            </p>
+
+            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Dungeons</h3>
+            <!-- Placeholder for dungeons content based on the layout -->
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                Looking for a real challenge? Our massive dungeons are designed to test your limits and give you a true late-game purpose. Explore sprawling arenas packed with actual puzzles, animated parkour, and strategic custom boss fights that provide endless endgame progression.
+            </p>
+
+            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">PyroFishing</h3>
+            <!-- Placeholder for fishing content based on the layout -->
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                Take your fishing to the next level! Catch unique custom fish, participate in server-wide fishing tournaments, and unlock powerful augments to permanently upgrade your fishing rod while building a diverse collection of rare catches.
+            </p>
+
+            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">mcMMO</h3>
+            <!-- Placeholder for mcmmo content based on the layout -->
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                Level up your basic survival skills just by playing the game. Perform everyday Minecraft actions to gain experience and unlock powerful new abilities as you progress.
+            </p>
+
+            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Seasonal Events</h3>
+            <!-- Placeholder for events content based on the layout -->
+            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                We run regular events throughout the year where you can access special limited-time dungeons and unlock exclusive, themed furniture.
+            </p>
+
+            <div class="border-t border-sun-brown/20 mb-8"></div>
+
+            <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">Our Links</h2>
+            
+            <ul class="font-body text-sun-brown/90 space-y-4 list-disc pl-5">
+                <li>
+                    <span class="font-bold">Discord:</span> <a href="https://discord.gg/sunsmp" class="text-[#5b8770] hover:text-sun-orange hover:underline transition-colors">discord.gg/sunsmp</a>
+                </li>
+                <li>
+                    <span class="font-bold">Instagram:</span> <a href="https://www.instagram.com/playsunsmp" class="text-[#5b8770] hover:text-sun-orange hover:underline transition-colors">@playsunsmp</a>
+                </li>
+                <li>
+                    <span class="font-bold">Store:</span> <a href="https://store.sunsmp.com" class="text-[#5b8770] hover:text-sun-orange hover:underline transition-colors">store.sunsmp.com</a>
+                </li>
+            </ul>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#1A0F24] py-8 border-t-4 border-sun-orange/20 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center">
+                <img src="./images/_solo text.png" alt="SunSMP Logo" class="h-14 object-contain drop-shadow-sm">
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 font-pixel text-xs text-sun-light/60">
+                <a href="#" class="hover:text-sun-yellow transition-colors">Rules</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Staff</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Privacy</a>
+            </div>
+
+            <div class="font-body text-xs text-sun-light/40 font-semibold text-center md:text-right">
+                Not affiliated with Mojang AB.<br>
+                &copy; 2026 SunSMP. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
