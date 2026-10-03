@@ -58,19 +58,30 @@
                 </div>
 
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="vote.html" class="font-pixel uppercase text-sun-brown underline decoration-2 decoration-sun-orange underline-offset-4 hover:text-sun-orange transition-colors text-sm">Vote</a>
+                    <a href="./vote" class="font-pixel uppercase text-sun-brown underline decoration-2 decoration-sun-orange underline-offset-4 hover:text-sun-orange transition-colors text-sm">Vote</a>
                     <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Wiki</a>
                     <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Map</a>
                     <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm">Store</a>
                 </div>
 
+                <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-sun-brown hover:text-sun-orange focus:outline-none">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-sun-brown hover:text-sun-orange focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
+
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-sun-light/95 backdrop-blur-sm border-t border-sun-brown/10">
+            <div class="px-4 pt-2 pb-4 space-y-2 flex flex-col">
+                <a href="./vote" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Vote</a>
+                <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Wiki</a>
+                <a href="#" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Map</a>
+                <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm py-2">Store</a>
             </div>
         </div>
     </nav>
