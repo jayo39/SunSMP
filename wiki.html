@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/3ed57289c1.js" crossorigin="anonymous"></script>
+
     <!-- Tailwind CSS (CDN + Config) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -45,13 +48,30 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Small triangle bullet points for sidebar */
+        /* Base sidebar arrow */
         .sidebar-link::before {
             content: "▸";
             margin-right: 8px;
             font-size: 0.8rem;
             color: #4A3320;
             opacity: 0.7;
+            display: inline-block;
+        }
+        /* Expanded downward arrow */
+        .sidebar-link.expanded::before {
+            content: "▾";
+        }
+
+        /* Submenu highlight states matching reference */
+        .submenu-link {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: #4A3320;
+            transition: background-color 0.15s ease;
+        }
+        .submenu-link:hover, .submenu-link.active {
+            background-color: rgba(74, 51, 32, 0.08); /* Subtle darker shade */
         }
     </style>
 </head>
@@ -75,7 +95,6 @@
                     <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm">Store</a>
                 </div>
 
-                <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
                     <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-sun-brown hover:text-sun-orange focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -86,7 +105,6 @@
 
             </div>
         </div>
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-sun-light/95 backdrop-blur-sm border-t border-sun-brown/10">
             <div class="px-4 pt-2 pb-4 space-y-2 flex flex-col">
                 <a href="./vote.html" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Vote</a>
@@ -111,12 +129,30 @@
 
             <!-- Category Links -->
             <ul class="space-y-6 font-pixel text-sm tracking-wider">
-                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">GETTING STARTED</a></li>
-                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">ECONOMY</a></li>
-                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">RANKS</a></li>
-                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">CLAIMING</a></li>
-                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">FISHING</a></li>
-                <li><a href="#" class="sidebar-link hover:text-sun-orange transition-colors text-sun-brown">DUNGEONS</a></li>
+                <li><a href="#" data-section="section-home" class="main-nav-link sidebar-link text-sun-orange font-bold hover:text-sun-orange transition-colors">GETTING STARTED</a></li>
+                <li><a href="#" data-section="section-economy" class="main-nav-link sidebar-link text-sun-brown hover:text-sun-orange transition-colors">ECONOMY</a></li>
+                <li><a href="#" data-section="section-ranks" class="main-nav-link sidebar-link text-sun-brown hover:text-sun-orange transition-colors">RANKS</a></li>
+                <li><a href="#" data-section="section-claiming" class="main-nav-link sidebar-link text-sun-brown hover:text-sun-orange transition-colors">CLAIMING</a></li>
+                <li><a href="#" data-section="section-fishing" class="main-nav-link sidebar-link text-sun-brown hover:text-sun-orange transition-colors">FISHING</a></li>
+                
+                <!-- Expandable Dungeons Menu -->
+                <li>
+                    <a href="#" id="dungeon-menu-toggle" class="sidebar-link text-sun-brown hover:text-sun-orange transition-colors block">DUNGEONS</a>
+                    
+                    <!-- Sub-menu for specific dungeons -->
+                    <ul id="dungeon-sub-menu" class="hidden pl-6 mt-3 space-y-1 font-body text-sm">
+                        <li><a href="#" data-dungeon="general" class="submenu-link dungeon-nav-link active">General Info</a></li>
+                        <li><a href="#" data-dungeon="sewers" class="submenu-link dungeon-nav-link">Abandoned Sewers</a></li>
+                        <li><a href="#" data-dungeon="fire" class="submenu-link dungeon-nav-link">Fire Temple</a></li>
+                        <li><a href="#" data-dungeon="desert" class="submenu-link dungeon-nav-link">Desert Hideout</a></li>
+                        <li><a href="#" data-dungeon="devil" class="submenu-link dungeon-nav-link">Red Devil Shrine</a></li>
+                        <li><a href="#" data-dungeon="tower" class="submenu-link dungeon-nav-link">Death Tower</a></li>
+                        <li><a href="#" data-dungeon="earth" class="submenu-link dungeon-nav-link">Blazing Earth</a></li>
+                        <li><a href="#" data-dungeon="lab" class="submenu-link dungeon-nav-link">Infested Lab</a></li>
+                        <li><a href="#" data-dungeon="wither" class="submenu-link dungeon-nav-link">Wither Temple</a></li>
+                        <li><a href="#" data-dungeon="cave" class="submenu-link dungeon-nav-link">Zombie Cave</a></li>
+                    </ul>
+                </li>
             </ul>
         </aside>
 
@@ -124,156 +160,993 @@
         <div class="hidden md:block w-px bg-sun-brown/20"></div>
 
         <!-- MAIN CONTENT -->
-        <div class="w-full md:w-3/4 pb-20">
+        <div class="w-full md:w-3/4 pb-20 relative">
             
-            <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Welcome to SunSMP</h1>
-            <p class="font-body text-sm text-sun-brown/60 italic mb-8">Last updated: Oct 2, 2026</p>
+            <!-- ================= GETTING STARTED SECTION ================= -->
+            <div id="section-home" class="wiki-section block animate-fade-in">
+                <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Welcome to SunSMP</h1>
+                <p class="font-body text-sm text-sun-brown/60 italic mb-8">Last updated: Oct 2, 2026</p>
 
-            <div class="border-t border-sun-brown/20 mb-8"></div>
+                <div class="border-t border-sun-brown/20 mb-8"></div>
 
-            <!-- WHAT IS SUNSMP -->
-            <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">What is SunSMP?</h2>
-            
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-6">
-                We are a dedicated, grief-free survival community focused on collaborative gameplay, custom economies, and player interaction. We've taken the vanilla Minecraft experience and upgraded it with features designed for builders and adventurers alike.
-            </p>
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
-                 In this brand-new server, you can make friends, build your dream base, and enjoy optional PvP without ever losing your items—plus so much more!
-            </p>
+                <!-- WHAT IS SUNSMP -->
+                <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">What is SunSMP?</h2>
+                <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-6">
+                    We are a dedicated, grief-free survival community focused on collaborative gameplay, custom economies, and player interaction. We've taken the vanilla Minecraft experience and upgraded it with features designed for builders and adventurers alike.
+                </p>
+                <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
+                     In this brand-new server, you can make friends, build your dream base, and enjoy optional PvP without ever losing your items—plus so much more!
+                </p>
 
-            <div class="border-t border-sun-brown/20 mb-8"></div>
+                <div class="border-t border-sun-brown/20 mb-8"></div>
 
-            <!-- ESSENTIAL COMMANDS TABLE -->
-            <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">Main Commands</h2>
-            
-            <div class="overflow-x-auto mb-10 border-t border-sun-brown/20">
-                <table class="w-full text-left font-body">
-                    <thead>
-                        <tr class="border-b border-sun-brown/20">
-                            <th class="py-4 pr-4 font-body font-bold text-sun-brown w-1/3">Command</th>
-                            <th class="py-4 font-body font-bold text-sun-brown">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sun-brown/90">
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/spawn</span>
-                            </td>
-                            <td class="py-4">Teleport to SunSMP spawn</td>
-                        </tr>
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/rtp</span>
-                            </td>
-                            <td class="py-4">Random teleport to wilderness</td>
-                        </tr>
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/back</span>
-                            </td>
-                            <td class="py-4">Return to your previous location</td>
-                        </tr>
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/sethome &lt;name&gt;</span>
-                            </td>
-                            <td class="py-4">Save your current location</td>
-                        </tr>
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/home &lt;name&gt;</span>
-                            </td>
-                            <td class="py-4">Teleport to a saved home</td>
-                        </tr>
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/tpa &lt;username&gt;</span>
-                            </td>
-                            <td class="py-4">Request to teleport to another player</td>
-                        </tr>
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/tpahere &lt;username&gt; </span>
-                            </td>
-                            <td class="py-4">Request another player to teleport to your location</td>
-                        </tr>
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/shop</span>
-                            </td>
-                            <td class="py-4">Access the in-game shop to purchase items</td>
-                        </tr>
-                        <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
-                            <td class="py-4 pr-4">
-                                <span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/pshop</span>
-                            </td>
-                            <td class="py-4">Teleport to player shops to buy and sell items</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- ESSENTIAL COMMANDS TABLE -->
+                <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">Main Commands</h2>
+                
+                <div class="overflow-x-auto mb-10 border-t border-sun-brown/20">
+                    <table class="w-full text-left font-body">
+                        <thead>
+                            <tr class="border-b border-sun-brown/20">
+                                <th class="py-4 pr-4 font-body font-bold text-sun-brown w-1/3">Command</th>
+                                <th class="py-4 font-body font-bold text-sun-brown">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sun-brown/90">
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/spawn</span></td>
+                                <td class="py-4">Teleport to SunSMP spawn</td>
+                            </tr>
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/rtp</span></td>
+                                <td class="py-4">Random teleport to wilderness</td>
+                            </tr>
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/back</span></td>
+                                <td class="py-4">Return to your previous location</td>
+                            </tr>
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/sethome &lt;name&gt;</span></td>
+                                <td class="py-4">Save your current location</td>
+                            </tr>
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/home &lt;name&gt;</span></td>
+                                <td class="py-4">Teleport to a saved home</td>
+                            </tr>
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/tpa &lt;username&gt;</span></td>
+                                <td class="py-4">Request to teleport to another player</td>
+                            </tr>
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/tpahere &lt;username&gt;</span></td>
+                                <td class="py-4">Request another player to teleport to your location</td>
+                            </tr>
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/shop</span></td>
+                                <td class="py-4">Access the in-game shop to purchase items</td>
+                            </tr>
+                            <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                <td class="py-4 pr-4"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/pshop</span></td>
+                                <td class="py-4">Teleport to player shops to buy and sell items</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- SERVER FEATURES TITLE -->
-            <div class="border-t border-sun-brown/20 mb-8 mt-12"></div>
-            <h2 class="font-pixel text-xl text-sun-brown mb-10 tracking-wider uppercase">Server Features</h2>
-            
-            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Economy</h3>
-            <!-- Placeholder for economy content based on the layout -->
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
-                Discover countless custom ways to make and spend money! Trade with players at the public mall, invest your wealth in custom Bling jewelry, or visit the daily Black Market.
-            </p>
+            <!-- Placeholders for other Main Categories -->
+            <div id="section-economy" class="wiki-section hidden animate-fade-in"><h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Economy</h1><p class="font-body text-sun-brown/90">Economy content here...</p></div>
+            <div id="section-ranks" class="wiki-section hidden animate-fade-in"><h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Ranks</h1><p class="font-body text-sun-brown/90">Rank content here...</p></div>
+            <div id="section-claiming" class="wiki-section hidden animate-fade-in"><h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Claiming</h1><p class="font-body text-sun-brown/90">Claiming content here...</p></div>
+            <div id="section-fishing" class="wiki-section hidden animate-fade-in"><h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Fishing</h1><p class="font-body text-sun-brown/90">Fishing content here...</p></div>
 
-            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Land Claiming</h3>
-            <!-- Placeholder for claiming content based on the layout -->
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
-                Claim your land using a golden shovel! Right-click two opposite corners to claim a rectangular area, allowing you to build in peace without the worry of griefing.
-            </p>
+            <!-- ================= DUNGEONS SECTION CONTAINER ================= -->
+            <div id="section-dungeons" class="wiki-section hidden animate-fade-in">
+                
+                <!-- General Info -->
+                <article id="general" class="dungeon-card block animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">General Information</h1>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-circle-info mr-1"></i> Guide</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-book mr-1"></i> Lore</span>
+                    </div>
+                    
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    
+                    <h3 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-ban mr-2"></i> Disabled Items & Commands</h3>
+                    <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-4">To ensure the dungeons operate correctly and provide a fair challenge, there are some restrictions while you are inside:</p>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-10 space-y-2">
+                        <li><strong>Disabled Items:</strong> Elytra, Wind Charges, Ender Pearls, and Chorus Fruit.</li>
+                        <li><strong>Disabled Commands:</strong> Most commands are disabled while in a dungeon. You will not be able to teleport someone in or exit out once you start the dungeon.</li>
+                    </ul>
 
-            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Custom Furniture & Items</h3>
-            <!-- Placeholder for furniture content based on the layout -->
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
-                Standard blocks not enough? We've added custom decorative furniture and items so you can detail your builds exactly how you want.
-            </p>
+                    <h3 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-khanda mr-2"></i> Enemy Information</h3>
+                    <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-6">The dungeons are guarded by custom enemies with unique mechanics. Understanding how they fight is crucial to surviving your run. Here are the common threats you will face:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                        <div class="bg-sun-card border-4 border-sun-brown rounded-xl p-6 text-center">
+                            <img src="./images/zombie.png" alt="Zombie" class="w-full max-w-[150px] object-contain border-2 border-sun-brown rounded-lg mb-4 mx-auto bg-sun-light">
+                            <h4 class="font-pixel text-xl text-sun-brown mb-3">Zombies</h4>
+                            <p class="font-body text-sm text-left text-sun-brown/90">Dungeon zombies are incredibly fast, moving just as fast as a running player. In addition to their high speed, they hit much harder and deal more damage than vanilla zombies.</p>
+                        </div>
+                        <div class="bg-sun-card border-4 border-sun-brown rounded-xl p-6 text-center">
+                            <img src="./images/pigman.png" alt="Pigmen" class="w-full max-w-[150px] object-contain border-2 border-sun-brown rounded-lg mb-4 mx-auto bg-sun-light">
+                            <h4 class="font-pixel text-xl text-sun-brown mb-3">Pigmen</h4>
+                            <p class="font-body text-sm text-left text-sun-brown/90">Extremely dangerous but highly fragile. Pigmen only have 1 heart of health, but if they hit you, they deal 3 hearts of <strong>true damage</strong>. Upon death, they explode and spawn baby zombies.</p>
+                        </div>
+                    </div>
 
-            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Dungeons</h3>
-            <!-- Placeholder for dungeons content based on the layout -->
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
-                Looking for a real challenge? Our massive dungeons are designed to test your limits and give you a true late-game purpose. Explore sprawling arenas packed with actual puzzles, animated parkour, and strategic custom boss fights that provide endless endgame progression.
-            </p>
+                    <h3 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-journal-whills mr-2"></i> Lore Blocks</h3>
+                    <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-6">Throughout the dungeons, you may stumble upon mysterious enchantment tables hidden in various rooms. These are known as Lore Blocks!</p>
+                    <img src="./images/loreblock.png" alt="Lore Block" class="w-full max-w-[350px] border-4 border-sun-brown rounded-xl mx-auto mb-6 block">
+                    <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10"><strong>How to use:</strong> Click any enchantment table in the dungeon to read lore about the dungeon. Be sure to click them when you see them, as they sometimes give hints on how to solve a nearby puzzle!</p>
+                </article>
 
-            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">PyroFishing</h3>
-            <!-- Placeholder for fishing content based on the layout -->
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
-                Take your fishing to the next level! Catch unique custom fish, participate in server-wide fishing tournaments, and unlock powerful augments to permanently upgrade your fishing rod while building a diverse collection of rare catches.
-            </p>
+                <!-- Abandoned Sewers -->
+                <article id="sewers" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Abandoned Sewers</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-emerald-500 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-leaf mr-1"></i> Easy</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Very Low</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: Low</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: Low</span>
+                    </div>
+                    
+                    <img src="./images/sewers.png" alt="Abandoned Sewers Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>None</strong></li>
+                    </ul>
 
-            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">mcMMO</h3>
-            <!-- Placeholder for mcmmo content based on the layout -->
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
-                Level up your basic survival skills just by playing the game. Perform everyday Minecraft actions to gain experience and unlock powerful new abilities as you progress.
-            </p>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>Sewer Control:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Parkour to the northeast side of the dungeon.</li>
+                                <li>Press the lever to create a fire.</li>
+                                <li>Stand near the fire to give yourself a fire trail particle effect.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Way to the Storage:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Parkour your way to the west side of the dungeon.</li>
+                                <li>Make sure to avoid coming in contact with water or you will have to get the fire again.</li>
+                                <li>Stand on the wool block to burn the cobwebs.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Storage:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>The room will automatically start once all players are in the room.</li>
+                                <li>Seven silverfish will spawn, kill them all to proceed.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Claim your reward!</li>
+                                <li>Walk straight to exit.</li>
+                            </ul>
+                        </li>
+                    </ol>
 
-            <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase">Seasonal Events</h3>
-            <!-- Placeholder for events content based on the layout -->
-            <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-10">
-                We run regular events throughout the year where you can access special limited-time dungeons and unlock exclusive, themed furniture.
-            </p>
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/acid.png" alt="Acid" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Acid Vial</span>
+                        </div>
+                    </div>
+                </article>
 
-            <div class="border-t border-sun-brown/20 mb-8"></div>
+                <!-- Fire Temple -->
+                <article id="fire" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Fire Temple</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-yellow-500 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-spider mr-1"></i> Moderate</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Very Low</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: Very Low</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: High</span>
+                    </div>
+                    
+                    <img src="./images/firetemple.png" alt="Fire Temple Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>None</strong></li>
+                    </ul>
 
-            <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">Our Links</h2>
-            
-            <ul class="font-body text-sun-brown/90 space-y-4 list-disc pl-5">
-                <li>
-                    <span class="font-bold">Discord:</span> <a href="https://discord.gg/sunsmp" class="text-[#5b8770] hover:text-sun-orange hover:underline transition-colors">discord.gg/sunsmp</a>
-                </li>
-                <li>
-                    <span class="font-bold">Instagram:</span> <a href="https://www.instagram.com/playsunsmp" class="text-[#5b8770] hover:text-sun-orange hover:underline transition-colors">@playsunsmp</a>
-                </li>
-                <li>
-                    <span class="font-bold">Store:</span> <a href="https://store.sunsmp.com" class="text-[#5b8770] hover:text-sun-orange hover:underline transition-colors">store.sunsmp.com</a>
-                </li>
-            </ul>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>Entrance:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Press the button on the chiseled quartz block to get across the lava.</li>
+                                <li>Enter through the large skull's mouth (you will start in the Loot Room).</li>
+                                <li>Head to the Trial Lobby and enter the particle portal in the red room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Trial 1:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Push the red block onto the chiseled quartz pad marked with red concrete.</li>
+                                <li>This opens the exit door to Trial 2.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Trial 2:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Push the red block near the lava cliffside.</li>
+                                <li>Push the orange block onto the orange pad to spawn an orange glass bridge.</li>
+                                <li>Push the red block across the bridge onto the normal red pad (this alters the bridge).</li>
+                                <li>Move the orange block across the newly formed mixed bridge.</li>
+                                <li>Push both blocks onto their respective chiseled quartz pads to unlock Trial 3.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Trial 3:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Move the yellow block near the glass barriers.</li>
+                                <li>Position the red and orange blocks so the yellow block can reach the yellow pad.</li>
+                                <li>Move the red block to the near-side red pad (do <strong>not</strong> cross the orange bridge yet).</li>
+                                <li>Push the yellow block across the red bridge to its chiseled quartz pad.</li>
+                                <li>Push the red block across the bridge to its second normal red pad.</li>
+                                <li>Move the orange block to its chiseled quartz pad.</li>
+                                <li>Finally, move the red block to its chiseled quartz pad to complete the trials.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Return to the starting room to claim your reward!</li>
+                                <li>Exit safely back to the start of the dungeon.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="bg-[#F8E7DF] border-l-4 border-red-500 p-4 mb-10 rounded shadow-sm">
+                        <h3 class="font-pixel text-sm text-red-700 mb-2 tracking-wider uppercase"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Warning</h3>
+                        <p class="font-body text-sm text-sun-brown/90">It is possible to softlock yourself if you push the blocks into a certain location. In this case, you will have to restart the dungeon.</p>
+                    </div>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/firetemplereward.png" alt="Chestplate" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Fire Chestplate</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Desert Hideout -->
+                <article id="desert" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Desert Hideout</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-orange-500 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Hard</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Medium</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: Medium</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: Medium</span>
+                    </div>
+                    
+                    <img src="./images/deserthideout.png" alt="Desert Hideout Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>None</strong></li>
+                    </ul>
+
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>Entrance:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Go down the stairs. To the right, there is a Lore Book.</li>
+                                <li>Hold sneak to pass through the path blocked by sand.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sticky Ceiling Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Touch the slime blocks to get a levitation effect, sticking you to the ceiling.</li>
+                                <li>Navigate a maze of red sandstone catwalks. If there is no longer a FULL red sandstone block above you, you will fall into the lava and die.</li>
+                                <li>Go to the platform on the right, continue straight ahead to the next platform.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Spike Hallway:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Avoid the end stone bricks on the floor; they activate spikes when stood on.</li>
+                                <li>Parkour between the sandstone safe spots to reach the other side.</li>
+                                <li>Push the button at the end of the hallway to open the door into a split room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Right Side - Hot Sand Pillars:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Parkour on sand pillars that rise and fall on a randomized cycle.</li>
+                                <li>Wait for the three northmost pillars to all rise at the same time.</li>
+                                <li>Once they rise, parkour across. Press the first button on the red block.</li>
+                                <li>Go south, wait for the correct pillar to rise. Press the second button on the red block.</li>
+                                <li>Look west, wait for the correct pillar to rise, Press the third button on the red block.</li>
+                                <li>Jump down and return to the main room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Left Side - Sticky Ceiling 2:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>This is a more complex and difficult rendition of the first ceiling challenge.</li>
+                                <li>Once at the back of the room, Press the button on the red block.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Boss: The Ruin Guardian:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Once both challenges are complete, stand in the center of the room to spawn the boss.</li>
+                                <li>Once defeated, head to the loot room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Claim your reward!</li>
+                                <li>Head all the way back to return.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/deserthideoutreward.png" alt="Bow" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Slime Bow</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Red Devil Shrine -->
+                <article id="devil" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Red Devil Shrine</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-orange-500 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Hard</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Medium</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: Medium</span>
+                    </div>
+                    
+                    <img src="./images/reddevilshrine.png" alt="Red Devil Shrine Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>None</strong></li>
+                    </ul>
+
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>Entrance:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Parkour across the skeleton to reach the entrance.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Trial of Greed:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>There are three paths to choose from. Pick the path with the coal blocks at lava level.</li>
+                                <li>Choosing the gold or diamond path leads to certain death.</li>
+                                <li>Walk down the stairs to reach the next room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Lava Bridge:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Activate the button on the wall. Dispensers will spawn zombies on both sides of the path.</li>
+                                <li>Defeat all the zombies to proceed.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pigman Plate Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Press a button in the center to spawn pigmen.</li>
+                                <li>Lure the pigmen into the six surrounding holes to activate the pressure plates. <em>Note: Plates only trigger when a pigman stands on them.</em></li>
+                                <li>Proceed to the next room once all six plates have been triggered.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Parkour Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Parkour across the obsidian blocks to reach the other side.</li>
+                                <li>If you fall, beware of the zombie spawners at the bottom. Walk over the piston at the beginning of the room to launch yourself upward.</li>
+                                <li>Press one of the buttons in the next room to proceed.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Disappearing Platforms Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Survive the 9 platforms that disappear at different intervals.</li>
+                                <li>When a platform turns into netherrack, it is about to disappear.</li>
+                                <li>Wait for the door to open, which leads to the loot room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Claim your reward!</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/reddevilshrinereward.png" alt="Sword" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Devil's Respite</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Death Tower -->
+                <article id="tower" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Death Tower</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-orange-500 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Hard</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Very High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: None</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: Low</span>
+                    </div>
+                    
+                    <img src="./images/deathtower.png" alt="Death Tower Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>None</strong></li>
+                    </ul>
+
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>Zombie Wave Room 1:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Press the button on the quartz block to begin.</li>
+                                <li>Defeat the entire wave of zombies to advance.</li>
+                                <li>Once the room is cleared, step into the particle effect that appears on the gold block to ascend to the next area.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Zombie Wave Room 2:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>This room starts automatically as soon as all the players enter.</li>
+                                <li>Avoid stepping on the pressure plates lining the edges of the room; they will inflict Wither II for 5 seconds.</li>
+                                <li>After all enemies are defeated, the barriers blocking the stairs will open, allowing you to proceed.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Soul Snatcher Maze:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Step on the 4 hidden golden pressure plates hidden in the maze to progress.</li>
+                                <li>Evade the roaming Soul Snatchers. If they touch you, you will be teleported to a jail cell and killed.</li>
+                                <li>After activating all four plates, step into the particles that appear in the center of the maze to teleport to the boss room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Boss Room (Phantom Knight):</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>You must survive three consecutive waves to complete this room.</li>
+                                <li><strong>Wave 1:</strong> Defeat a standard wave of zombies.</li>
+                                <li><strong>Wave 2:</strong> The chiseled quartz blocks in the room will transform into Zombie Pigmen.</li>
+                                <li><strong>Wave 3:</strong> The Phantom Knight will teleport to the center of the room alongside a horde of zombies.</li>
+                                <li>Once all the waves are complete, stand in the center of the room to ascend to the final area.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Claim your reward!</li>
+                                <li>Press the button to exit the dungeon.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/deathtowerreward.png" alt="Helmet" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Phantom Helmet</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blazing Earth -->
+                <article id="earth" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Blazing Earth</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-fire mr-1"></i> Very Hard</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Very High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: Very High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: High</span>
+                    </div>
+                    
+                    <img src="./images/blazingearth.png" alt="Blazing Earth Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>Minimum Players:</strong> This dungeon requires minimum of 2 players.</li>
+                        <li><strong>Bow and Arrows:</strong> Required for activating buttons.</li>
+                    </ul>
+
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>Entrance:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Go up the stairs, align with the water below, and jump down.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Section A & B Split:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><em>Note: Both Section A and Section B must be completed by a split team to continue.</em></li>
+                            </ul>
+                        </li>
+                        <li><strong>Section A (Left Path):</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><strong>Room A1:</strong> Stand on the left pressure plate and go through the revealed path.</li>
+                                <li><strong>Room A2:</strong> Complete the lava parkour. Shoot the button on the wooden ceiling pillar to open the next room.</li>
+                                <li><strong>Room A3:</strong> Run through the cobweb-filled corridor and throw an item on the back pressure plate.</li>
+                                <li>Both groups must have an item on their plate to advance.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Section B (Right Path):</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><strong>Room B1:</strong> Stand on the south pressure plate and go through the revealed path.</li>
+                                <li><strong>Room B2:</strong> Navigate the maze and throw an item on the pressure plate at the end.</li>
+                                <li>Continue along with Group A once done.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cavern Parkour Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Complete the large canyon parkour.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Split Puzzle Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>The group must split up again into the left and right puzzle rooms.</li>
+                                <li><strong>Left (Meteor) Side:</strong> Run past spawners, jump into the lava at the furthest point (indicated by a sign), press the button on the red block.</li>
+                                <li><strong>Right (Skull) Side:</strong> Press the stone button behind the wither skeleton skull to teleport. Throw an item on the plate, then press the button on the red block. Repeat this for all three buttons.</li>
+                                <li>Once complete, proceed down the newly opened hallway.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Oasis Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Find the 5 hidden pressure plates and throw an item on each.</li>
+                                <li>A hole will open in the middle of the lake.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tightrope over Lava Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Shoot the button on the ceiling to spawn iron bars, then start the parkour while dodging fire charges.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mob Run Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Sprint to the other end, dodging 1x1 lava holes.</li>
+                                <li>Complete the lava parkour at the end.</li>
+                                <li>At the end, jump into the hole on the <strong>RIGHT</strong>!</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wave Room + The Usurper:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Survive 4 waves of zombies.</li>
+                                <li>After the zombie wave, a boss will spawn in the middle of the room.</li>
+                                <li>Kill The Usurper to complete the challenge.</li>
+                                <li>Complete the easy parkour to enter the Loot Room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Claim your reward!</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+                    
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/flameblade.png" alt="Sword" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Flameblade</span>
+                        </div>
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/earthshaker.png" alt="Hammer" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Earth Shaker</span>
+                        </div>
+                    </div>
+
+                    <h4 class="font-body text-sun-orange text-lg mb-3">Chance Drop (Receives 1 of 2)</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/conflag.png" alt="Conflagration" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Conflagration</span>
+                        </div>
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/calaboots.png" alt="Boots" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Calamity Boots</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Infested Lab -->
+                <article id="lab" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Infested Lab</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-fire mr-1"></i> Very Hard</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Very High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: Low</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: Very High</span>
+                    </div>
+                    
+                    <img src="./images/infestedlab.png" alt="Infested Lab Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>Bow and Arrows:</strong> Required for activating buttons.</li>
+                    </ul>
+
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>Entrance:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Shoot the 2 pressure plates to open the door.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Accessing Sector D-6:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Enter the room to the right. At the back, shoot the wooden pressure plates on the bookshelf.</li>
+                                <li>Go through the hallway opposite the entrance and take every left until you reach "Control Room D-4".</li>
+                                <li>Shoot the bottom-middle button on the left wall and the top-left button on the right wall.</li>
+                                <li>Return to the main room and shoot the buttons on both sides of the locked door.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Subject Examination / Armory:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Go through the door labeled "Armory" on the left and head up the staircase.</li>
+                                <li>On the opposite side of the entrance, shoot the two buttons on both sides of the room to open the iron doors.</li>
+                                <li>Follow the corridor, sticking to the left.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Nether Examination:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Locate and shoot all the wooden buttons in this room.</li>
+                                <li><em>Tip:</em> Shoot them quickly, as arrows despawn fast.</li>
+                                <li>When all buttons are shot, a redstone torch on the bookshelf will light up and a noteblock jingle will play.</li>
+                                <li>Go all the way back to the "Subject Examination" crossroad and enter the door labeled "Sector D-8".</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sector D-8:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Press the button to the left of the door to fight a wave of zombies.</li>
+                                <li>Once all zombies are dead, make your way to "Sector D-10".</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sector D-10 Warehouse:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>There are 4 buttons in different paths of this room. <strong>All 4 must be pressed to continue.</strong>
+                                    <ul class="list-disc pl-5 mt-1 space-y-1">
+                                        <li><strong>Plate 1:</strong> In the northeast corner, through a window into a room named "Storage".</li>
+                                        <li><strong>Plates 2 & 3:</strong> Through the southern path into "Incubation". Enter the code "372".</li>
+                                        <li><strong>Plate 4:</strong> In the east room, up the staircase, and to the left. Put an item in each water stream and wait for the iron doors to open. Press the button in the kitchen corner.</li>
+                                    </ul>
+                                </li>
+                                <li>Once all buttons are pressed, the north door will open. Head through it, down the corridor, and exit back into "Subject Examination".</li>
+                            </ul>
+                        </li>
+                        <li><strong>Subject Examination Revisited:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Head through the right door.</li>
+                                <li>Go to "Animal Experimentation".</li>
+                            </ul>
+                        </li>
+                        <li><strong>Animal Experimentation:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Follow the path into a small lab room. Press the button in the corner to open Sector V-4.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sector V-4 Undead Containment:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Beware the extremely high amount of zombie spawners and ceiling pigmen spawners in this room.</li>
+                                <li>Two buttons must be pressed: one in the cell next to the staircase, and one in the cells on the second level.</li>
+                                <li>Once activated, return to the main room.</li>
+                                <li>Proceed through the door into "Sector V-6 Cafeteria".</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cafeteria:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Press the button to start the wave room.</li>
+                                <li>Survive the zombie wave.</li>
+                                <li>Once the horde is defeated, the door will open.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Corridor & Loot:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Proceed down the corridor and press the button to open the door.</li>
+                                <li>Claim your reward, proceed through the doors, and head up the staircase.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Exit:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Press the buttons on the walls to open the doors and exit the dungeon.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/lifevial.png" alt="Vial" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Life Vial</span>
+                        </div>
+                    </div>
+                    
+                    <h4 class="font-body text-sun-orange text-lg mb-3">Chance Drop (Receives 1 of 2)</h4>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/mummybow.png" alt="Bow" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Mummy Bow</span>
+                        </div>
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/icebow.png" alt="Bow" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Ice Devil Bow</span>
+                        </div>
+                    </div>
+
+                    <h4 class="font-body text-sun-orange text-lg mb-3">Chance Drop (Receives 1 of 2)</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/plague.png" alt="Plague" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Plague</span>
+                        </div>
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/calachestplate.png" alt="Chestplate" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Calamity Chestplate</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Wither Temple -->
+                <article id="wither" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Wither Temple</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-purple-600 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-dragon mr-1"></i> Extreme</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Very High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: Very High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: High</span>
+                    </div>
+                    
+                    <img src="./images/withertemple.png" alt="Wither Temple Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>Bow and Arrows:</strong> Required for activating buttons.</li>
+                    </ul>
+
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>First Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Follow the hallway.</li>
+                                <li>Step on the two redstone lamps.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Second Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Jump across the parkour and shoot the button above the entrance door to open the way forwards.</li>
+                                <li>Jump across the parkour and drop into the hole on the opposite side.</li>
+                            </ul>
+                        </li>
+                        <li><strong>First Corridor:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Go either way at the bottom; both paths require clearing a 3-block jump.</li>
+                                <li><em>Warning:</em> The jumps are only marked by black stained glass.</li>
+                                <li>At the next intersection, go right. Shoot the wooden button behind the wither skull to open the door in the previous area.</li>
+                                <li>Complete the jump past the opened door.</li>
+                            </ul>
+                        </li>
+                        <li><strong>First Void Plate Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Activate all 3 pressure plates in the room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Second Corridor:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Go to the right path to press a button at the end of the hallway.</li>
+                                <li>Return to the first room and push the button to open the door.</li>
+                                <li>You must now complete 3-block-1-up jumps to reach two buttons. Press both to open the door to the spire room.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Spire Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Climb to the top of the room.</li>
+                                <li>Once at the top, jump down the hole and land in the water pool at the bottom.</li>
+                                <li>Continue up the piston elevators.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Split Corridors:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Head left into a room with two routes. Take the <strong>rightmost</strong> route!</li>
+                                <li>Sneaking is recommended to avoid holes in the floor.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Invisible Maze & Timed Parkour:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Navigate the barrier block maze.</li>
+                                <li>Pressing the button reveals timed parkour over a void. You have 10-15 seconds to complete it before it disappears!</li>
+                                <li>Continue forward and complete the 4-block jump.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Splash Potion Parkour:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Dispensers in this room fire Splash Potions of Harming repeatedly.</li>
+                                <li>Drop into the hole at the end of the corridor.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Third Corridor & Void Plate Room 2:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Run through the sandstone hallway and make the jump at the end.</li>
+                                <li>Continue along the barrier blocks and clear the 3-block jump.</li>
+                                <li>Step on the 3 pressure plates to proceed.</li>
+                                <li><em>Warning:</em> Platforms with red-stained clay above them are blocked by barrier blocks!</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wave Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Press the stone button to start the wave.</li>
+                                <li>Survive 5 waves of zombies and pigmen. A Giant will spawn between the second and third waves.</li>
+                                <li>Defeating all enemies opens the middle door on the east wall.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Boss Room - The Wither:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Press the button on the black concrete when ready.</li>
+                                <li>The fight takes place on a 4x3 grid of platforms over the void.</li>
+                                <li>The boss has 9 lives. Shoot all 6 minecarts inside its eyes to remove a life.</li>
+                                <li><em>Warning:</em> After its eyes are shot (and randomly thereafter), 3 of the 4 rows will be unsafe.</li>
+                                <li>You have a short amount of time to reach the safe platforms.</li>   
+                                <li>The unsafe platforms will give you Wither and spawn zombies.</li>
+                                <li><em>Tip:</em> The redstone lamps indicate the safe row of platforms.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Halls:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Once the Wither is defeated, the door on the wall will open.</li>
+                                <li>Claim your reward!</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+                    
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/witherhelmet.png" alt="Wither Helmet" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Wither Boss Helmet</span>
+                        </div>
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/shadowblade.png" alt="Shadowblade" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Shadowblade</span>
+                        </div>
+                    </div>
+
+                    <h4 class="font-body text-sun-orange text-lg mb-3">Chance Drop (Receives 1 of 2)</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/drought.png" alt="Drought" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Drought</span>
+                        </div>
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/calahelmet.png" alt="Helmet" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Calamity Helmet</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Zombie Cave -->
+                <article id="cave" class="dungeon-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Zombie Cave</h1>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-purple-600 text-white px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-dragon mr-1"></i> Extreme</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-skull mr-1"></i> Zombies: Very High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-person-running mr-1"></i> Parkour: High</span>
+                        <span class="bg-sun-carddark text-sun-light px-2 py-1 rounded text-xs font-pixel shadow-sm"><i class="fa-solid fa-puzzle-piece mr-1"></i> Puzzles: High</span>
+                    </div>
+                    
+                    <img src="./images/zombiecave.png" alt="Zombie Cave Preview" class="w-full rounded border-4 border-sun-brown mb-10 object-cover">
+                    
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-clipboard-list mr-2"></i> Requirements</h3>
+                    <ul class="list-disc pl-5 font-body text-sun-brown/90 mb-8">
+                        <li><strong>Minimum Players:</strong> This dungeon requires minimum of 2 players.</li>
+                        <li><strong>Bow and Arrows:</strong> Required for activating buttons.</li>
+                    </ul>
+
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-book-open mr-2"></i> Walkthrough</h3>
+                    <ol class="list-decimal pl-5 font-body text-sun-brown/90 mb-10 space-y-4">
+                        <li><strong>Cave Opening:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Each player must stand on a red carpet. Once stood on, the cave entrance will open.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Path A & B Split:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><em>Note: The group must split into two and complete both Path A and Path B separately to continue.</em></li>
+                            </ul>
+                        </li>
+                        <li><strong>Path A:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><strong>Lava Parkour:</strong> Stand on the stone pressure plate to summon a platform over the lava (have the other person help you just here). <em>Alternatively:</em> You can swim your way through using fire resistance.</li>
+                                <li><strong>1 Block Timed Parkour:</strong> Press the button to summon a single timed block, make your way by jumping on this.</li>
+                                <li><strong>Netherrack Wall Hallway:</strong> The netherrack walls that emit fire particles are shootable. Shoot them with an arrow and they will be destroyed. Jump into the lava pool that is emitting ender and flame particles.</li>
+                                <li><strong>Rising Lava Parkour:</strong> Press the button to start the parkour. Every once in a while, the lava level will rise up so parkour your way up quickly. <em>Alternatively:</em> You can use fire resistance to bypass the entire parkour.</li>
+                                <li><strong>Timed Block Parkour:</strong> Press the button to summon timed block parkour. Make your way up by doing 2 parkours like this.</li>
+                                <li><strong>Pigmen Parkour Room:</strong> There is a stone pressure plate at the northwest side of the room. Press it to summon timed parkour. Quickly make your way up to the west side of the wall before the blocks despawn, then shoot the wooden button. Parkour your way up to the east side of the wall (not timed), and shoot the second wooden button. Once both are shot, the door will open.</li>
+                                <li><strong>Lava Jump:</strong> Jump down to the next room. Make sure to press space as you fall, or you will land straight into lava (death).</li>
+                                <li><strong>Arrow Target Room:</strong> Step on one of the west stone pressure plates to reveal a wooden button on the east side hidden behind a redstone lamp. Shoot the button once revealed; that will reveal another wooden button on the west side. Shooting both will open the path.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Path B:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><strong>Lava Parkour:</strong> Parkour your way to the other side. Drop down into the hole where there is a small parkour room.</li>
+                                <li><strong>Pressure Plate Parkour:</strong> Parkour your way up to the bedrock and step on the stone pressure plate. Jump directly onto the stone pressure plate on the ground to open the door. <em>Note:</em> The ground pressure plate must be stepped on very quickly (almost simultaneously). Make your way up and jump onto a red carpet that emits flame particles.</li>
+                                <li><strong>Giant Wave Room:</strong> Step on the 2 stone pressure plates to start the wave room. A large horde of zombies and 1 Giant will spawn; kill them all to proceed. Once killed, a red carpet emitting flame particles will be revealed, allowing you to teleport.</li>
+                                <li><strong>Timed Bridge:</strong> Stepping on the pressure plate will spawn an obsidian bridge. Run your way through fast, as the bridge despawns very quickly.</li>
+                                <li><strong>Lava Parkour:</strong> Parkour your way to the next hallway. At the end, you will find a 1-block hole, jump in. Make your way around to the next parkour area.</li>
+                                <li><strong>Final Lava Parkour:</strong> Drop an item into a hole in the north side corner of the room. This will spawn blocks over the lava, allowing you to parkour your way across.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Meetup Door:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Wait for your team to finish the other path.</li>
+                                <li>Once both teams stand on the stone pressure plates, the door to the next room will open.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Boss Door:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Shoot the netherrack pillar that is emitting flame particles.</li>
+                                <li>This will reveal a stone button. Activating it will open the door to the boss.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Boss Room - The Zombie:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>The boss has 9 lives.</li>
+                                <li>Shooting the eyes will reveal the heart, where you have to time it right to shoot it (it beats, closing and opening).</li>
+                                <li>Shooting the heart will take away 1 life.</li>
+                                <li><em>Warning:</em> Shooting the eyes will spawn zombies from its hands and start splashing Instant Damage potions into the middle area.</li>
+                                <li>Shooting the heart will spawn pigmen from its mouth.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Loot Room:</strong>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Once the Zombie is defeated, a red carpet emitting flame particles will spawn.</li>
+                                <li>Teleport through it and claim your reward!</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <h3 class="font-pixel text-lg text-sun-brown mb-4 tracking-wider uppercase"><i class="fa-solid fa-gem mr-2"></i> Rewards</h3>
+                    
+                    <h4 class="font-body text-emerald-600 text-lg mb-3">Guaranteed Drop</h4>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/zombiehead.png" alt="Head" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Zombie Head</span>
+                        </div>
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/zombiesword.png" alt="Zombie Sword" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Zombie Sword</span>
+                        </div>
+                    </div>
+
+                    <h4 class="font-body text-sun-orange text-lg mb-3">Chance Drop (Receives 1 of 2)</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/fear.png" alt="Fear" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Fear</span>
+                        </div>
+                        <div class="bg-sun-card border-2 border-sun-brown p-3 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-sm">
+                            <img src="./images/calaleggings.png" alt="Leggings" class="w-12 h-12 object-contain mb-2">
+                            <span class="font-pixel text-xs text-sun-brown text-center">Calamity Leggings</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
 
         </div>
     </main>
@@ -299,7 +1172,128 @@
         </div>
     </footer>
 
-    <!-- External JavaScript -->
-    <script src="script.js"></script>
+    <!-- Interactive Navigation Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // UI Elements
+            const mainNavLinks = document.querySelectorAll('.main-nav-link');
+            const wikiSections = document.querySelectorAll('.wiki-section');
+            const dungeonToggle = document.getElementById('dungeon-menu-toggle');
+            const dungeonSubMenu = document.getElementById('dungeon-sub-menu');
+            const dungeonNavLinks = document.querySelectorAll('.dungeon-nav-link');
+            const dungeonCards = document.querySelectorAll('.dungeon-card');
+
+            // 1. MAIN SIDEBAR NAVIGATION (Non-Dungeon Links)
+            mainNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Reset styling on all main sidebar links
+                    mainNavLinks.forEach(l => {
+                        l.classList.remove('text-sun-orange', 'font-bold');
+                        l.classList.add('text-sun-brown');
+                    });
+                    
+                    // Add active styling to clicked link
+                    link.classList.remove('text-sun-brown');
+                    link.classList.add('text-sun-orange', 'font-bold');
+                    
+                    // Hide all main sections
+                    wikiSections.forEach(sec => {
+                        sec.classList.add('hidden');
+                        sec.classList.remove('block');
+                    });
+                    
+                    // Show target main section
+                    const targetId = link.getAttribute('data-section');
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.remove('hidden');
+                        targetSection.classList.add('block');
+                    }
+                    
+                    // Close the Dungeons submenu if we click a different main link
+                    if(targetId !== 'section-dungeons') {
+                        dungeonSubMenu.classList.add('hidden');
+                        dungeonToggle.classList.remove('expanded');
+                        dungeonToggle.classList.remove('text-sun-orange', 'font-bold');
+                        dungeonToggle.classList.add('text-sun-brown');
+                    }
+                });
+            });
+
+            // 2. TOGGLE DUNGEONS SUBMENU
+            dungeonToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                dungeonSubMenu.classList.toggle('hidden');
+                dungeonToggle.classList.toggle('expanded');
+                
+                // Styling the main "DUNGEONS" label when open
+                if(!dungeonSubMenu.classList.contains('hidden')) {
+                    // Reset other main links
+                    mainNavLinks.forEach(l => {
+                        l.classList.remove('text-sun-orange', 'font-bold');
+                        l.classList.add('text-sun-brown');
+                    });
+                    dungeonToggle.classList.remove('text-sun-brown');
+                    dungeonToggle.classList.add('text-sun-orange', 'font-bold');
+                    
+                    // Switch right side to the Dungeons wrapper
+                    wikiSections.forEach(sec => {
+                        sec.classList.add('hidden');
+                        sec.classList.remove('block');
+                    });
+                    document.getElementById('section-dungeons').classList.remove('hidden');
+                    document.getElementById('section-dungeons').classList.add('block');
+                    
+                    // By default, if no card is visible, show "General Info"
+                    const anyVisible = Array.from(dungeonCards).some(c => c.classList.contains('block'));
+                    if(!anyVisible) {
+                        document.getElementById('general').classList.add('block');
+                        document.getElementById('general').classList.remove('hidden');
+                    }
+                } else {
+                    dungeonToggle.classList.remove('text-sun-orange', 'font-bold');
+                    dungeonToggle.classList.add('text-sun-brown');
+                }
+            });
+
+            // 3. DUNGEON SUB-TAB NAVIGATION
+            dungeonNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active state background from all submenu links
+                    dungeonNavLinks.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active state to clicked sub-tab
+                    link.classList.add('active');
+                    
+                    // Hide all dungeon cards
+                    dungeonCards.forEach(card => {
+                        card.classList.remove('block');
+                        card.classList.add('hidden');
+                    });
+                    
+                    // Show target dungeon card
+                    const targetId = link.getAttribute('data-dungeon');
+                    const targetCard = document.getElementById(targetId);
+                    if (targetCard) {
+                        targetCard.classList.remove('hidden');
+                        targetCard.classList.add('block');
+                    }
+                    
+                    // Smooth scroll up to top on mobile
+                    if(window.innerWidth < 768) {
+                        window.scrollTo({
+                            top: targetCard.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
