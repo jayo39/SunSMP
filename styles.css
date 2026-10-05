@@ -120,3 +120,38 @@ h1, h2, h3, h4, h5, h6, .font-pixel {
     0% { transform: translateX(-20vw); }
     100% { transform: translateX(120vw); }
 }
+
+/* Custom Scrollbar for Search Results */
+#wiki-search-results::-webkit-scrollbar {
+    width: 6px;
+}
+#wiki-search-results::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 6px;
+}
+#wiki-search-results::-webkit-scrollbar-thumb {
+    background: #F49B36; /* sun-orange */
+    border-radius: 6px;
+}
+#wiki-search-results::-webkit-scrollbar-thumb:hover {
+    background: #D58326; /* sun-darkorange */
+}
+
+/* Custom Global Page Scrollbar */
+::-webkit-scrollbar {
+    width: 10px; /* Slightly wider than the dropdown for easier page grabbing */
+}
+
+::-webkit-scrollbar-track {
+    background: #FFF5E6; /* Matches your sun-light body background */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #F49B36; /* sun-orange */
+    border-radius: 10px;
+    border: 2px solid #FFF5E6; /* Creates a clean padded look against the track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #D58326; /* sun-darkorange */
+}
