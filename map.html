@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map | SunSMP</title>
+    
+    <!-- Google Fonts: Silkscreen for headers, Nunito for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/3ed57289c1.js" crossorigin="anonymous"></script>
+
+    <!-- Tailwind CSS (CDN + Config) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        pixel: ['"Silkscreen"', 'monospace'],
+                        body: ['"Nunito"', 'sans-serif'],
+                    },
+                    colors: {
+                        sun: {
+                            light: '#FFF5E6',     
+                            card: '#FFE8CC',      
+                            orange: '#F49B36',    
+                            darkorange: '#D58326', 
+                            yellow: '#FFD166',    
+                            brown: '#4A3320',     
+                            purple: '#2A1B38',    
+                            carddark: '#3D2B4D',  
+                        }
+                    },
+                    boxShadow: {
+                        'block': '4px 4px 0px rgba(74, 51, 32, 1)', 
+                        'block-dark': '4px 4px 0px rgba(0, 0, 0, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased bg-sun-light flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-sun-light/95 backdrop-blur-sm border-b-2 border-sun-brown/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <a href="/">
+                        <img src="./images/_icon500x500.png" alt="SunSMP Horizontal Logo" class="h-12 object-contain drop-shadow-sm">
+                    </a>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="./vote" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Vote</a>
+                    <a href="./wiki" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm">Wiki</a>
+                    <!-- Highlighted Map Link -->
+                    <a href="./map" class="font-pixel uppercase text-sun-brown underline decoration-2 decoration-sun-orange underline-offset-4 hover:text-sun-orange transition-colors text-sm">Map</a>
+                    <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm">Store</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-sun-brown hover:text-sun-orange focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-sun-light/95 backdrop-blur-sm border-t border-sun-brown/10">
+            <div class="px-4 pt-2 pb-4 space-y-2 flex flex-col">
+                <a href="./vote" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Vote</a>
+                <a href="./wiki" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Wiki</a>
+                <a href="./map" class="font-pixel uppercase text-sun-brown hover:text-sun-orange transition-colors text-sm py-2">Map</a>
+                <a href="https://store.sunsmp.com" target="_blank" class="font-pixel uppercase text-sun-orange font-bold hover:text-sun-darkorange transition-colors text-sm py-2">Store</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow relative overflow-hidden flex flex-col">
+        <!-- Subtle Top Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#FFE2C8]/40 to-transparent h-96 -z-10"></div>
+        
+        <!-- HEADER SECTION -->
+        <div class="pt-12 pb-8 text-center relative z-10 px-4">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <i class="fa-solid fa-map-location-dot text-sun-orange text-lg"></i>
+                <span class="font-pixel text-sm text-sun-brown/70 uppercase tracking-widest">Real-time World Map</span>
+            </div>
+            <h1 class="font-pixel text-4xl md:text-5xl text-sun-brown mb-4">Live Map</h1>
+            <p class="font-body text-lg text-sun-brown/80 font-semibold max-w-2xl mx-auto">
+                Explore the world of SunSMP, find player towns, and locate your next adventure.
+            </p>
+        </div>
+
+        <!-- MAP CONTAINER (Now 80vh tall and slightly wider) -->
+        <div class="w-full max-w-[97%] mx-auto px-4 sm:px-6 lg:px-8 pb-16 relative z-10 flex-grow flex flex-col">
+            <div class="bg-sun-card border-[3px] border-sun-brown rounded-xl shadow-block p-2 flex-grow min-h-[80vh] relative group flex flex-col">
+                
+                <!-- IFRAME Embed -->
+                <iframe src="https://mapdata.sunsmp.com" title="SunSMP Live Map" class="w-full flex-grow rounded-lg border-2 border-sun-brown/20 bg-sun-light" allowfullscreen></iframe>
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#1A0F24] py-8 border-t-4 border-sun-orange/20 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center">
+                <img src="./images/_solo text.png" alt="SunSMP Logo" class="h-14 object-contain drop-shadow-sm">
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 font-pixel text-xs text-sun-light/60">
+                <a href="#" class="hover:text-sun-yellow transition-colors">Rules</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Staff</a>
+                <a href="#" class="hover:text-sun-yellow transition-colors">Privacy</a>
+            </div>
+
+            <div class="font-body text-xs text-sun-light/40 font-semibold text-center md:text-right">
+                Not affiliated with Mojang AB.<br>
+                &copy; 2026 SunSMP. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
