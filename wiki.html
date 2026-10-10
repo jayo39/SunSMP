@@ -140,10 +140,8 @@
                 <!-- Expandable Economy Menu -->
                 <li>
                     <a href="#" id="economy-menu-toggle" class="sidebar-link text-sun-brown hover:text-sun-orange transition-colors block">ECONOMY</a>
-                    
-                    <!-- Sub-menu for economy sections -->
                     <ul id="economy-sub-menu" class="hidden pl-6 mt-3 space-y-1 font-body text-sm">
-                        <li><a href="#" data-economy="eco-currency" class="submenu-link economy-nav-link active">Currency</a></li>
+                        <li><a href="#" data-economy="eco-currency" class="submenu-link economy-nav-link">Currency</a></li>
                         <li><a href="#" data-economy="eco-server" class="submenu-link economy-nav-link">Server Shop</a></li>
                         <li><a href="#" data-economy="eco-player" class="submenu-link economy-nav-link">Player Shops</a></li>
                         <li><a href="#" data-economy="eco-auction" class="submenu-link economy-nav-link">Auction House</a></li>
@@ -152,7 +150,15 @@
                     </ul>
                 </li>
                 <li><a href="#" data-section="section-ranks" class="main-nav-link sidebar-link text-sun-brown hover:text-sun-orange transition-colors">RANKS</a></li>
-                <li><a href="#" data-section="section-claiming" class="main-nav-link sidebar-link text-sun-brown hover:text-sun-orange transition-colors">CLAIMING</a></li>
+                <!-- Expandable Claiming Menu -->
+                <li>
+                    <a href="#" id="claiming-menu-toggle" class="sidebar-link text-sun-brown hover:text-sun-orange transition-colors block">CLAIMING</a>
+                    <ul id="claiming-sub-menu" class="hidden pl-6 mt-3 space-y-1 font-body text-sm">
+                        <li><a href="#" data-claiming="claim-how" class="submenu-link claiming-nav-link">How to Claim</a></li>
+                        <li><a href="#" data-claiming="claim-trust" class="submenu-link claiming-nav-link">Trust Levels</a></li>
+                        <li><a href="#" data-claiming="claim-flags" class="submenu-link claiming-nav-link">Claim Flags</a></li>
+                    </ul>
+                </li>
                 <li><a href="#" data-section="section-fishing" class="main-nav-link sidebar-link text-sun-brown hover:text-sun-orange transition-colors">FISHING</a></li>
                 
                 <!-- Expandable Dungeons Menu -->
@@ -161,7 +167,7 @@
                     
                     <!-- Sub-menu for specific dungeons -->
                     <ul id="dungeon-sub-menu" class="hidden pl-6 mt-3 space-y-1 font-body text-sm">
-                        <li><a href="#" data-dungeon="general" class="submenu-link dungeon-nav-link active">General Info</a></li>
+                        <li><a href="#" data-dungeon="general" class="submenu-link dungeon-nav-link">General Info</a></li>
                         <li><a href="#" data-dungeon="sewers" class="submenu-link dungeon-nav-link">Abandoned Sewers</a></li>
                         <li><a href="#" data-dungeon="fire" class="submenu-link dungeon-nav-link">Fire Temple</a></li>
                         <li><a href="#" data-dungeon="desert" class="submenu-link dungeon-nav-link">Desert Hideout</a></li>
@@ -698,17 +704,254 @@
                 </article>
 
                 <!-- Black Market -->
+                <!-- Black Market -->
                 <article id="eco-blackmarket" class="economy-card hidden animate-fade-in">
                     <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Black Market</h1>
                     <div class="border-t border-sun-brown/20 mb-8"></div>
-                    <p class="font-body text-base text-sun-brown/90 leading-relaxed">
-                        The Black Market (<code class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/blackmarket</code>) is a special shop with a daily rotating stock. You can find unique, limited, or rare items that aren't available in the regular Server Shop.
+                    <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-8">
+                        The Black Market is a special shop with a daily rotating stock. You can find unique, limited, or rare items that aren't available in the regular Server Shop.
                     </p>
+
+                    <!-- MARKET MECHANICS -->
+                    <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">Market Mechanics</h2>
+                    <div class="bg-[#F8E7DF] border-l-4 border-sun-orange p-4 mb-10 rounded shadow-sm">
+                        <h3 class="font-pixel text-sm text-sun-darkorange mb-2 tracking-wider uppercase"><i class="fa-solid fa-cart-shopping mr-2"></i> How It Works</h3>
+                        <ul class="list-disc pl-5 font-body text-sm text-sun-brown/90 space-y-2 mt-2">
+                            <li><strong>Exclusive Items:</strong> Features rare furniture you cannot buy elsewhere on the server, useful items to help you in dungeons, as well as powerful weapons and armor.</li>
+                            <li><strong>Daily Rotation:</strong> There are <strong>7 listings total</strong> every day, and the list refreshes every <strong>24 hours</strong>.</li>
+                            <li><strong>Limited Stock:</strong> Stock is limited, so make sure to buy items before they sell out!</li>
+                            <li><strong>Rarity Scaling:</strong> Available stock varies depending on the rarity—generally, higher rarity items have much lower stock.</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+
+                    <!-- COMMANDS -->
+                    <h2 class="font-pixel text-xl text-sun-brown mb-4 tracking-wider uppercase">Commands</h2>
+                    <div class="overflow-x-auto mb-6 border-t border-sun-brown/20">
+                        <table class="w-full text-left font-body">
+                            <thead>
+                                <tr class="border-b border-sun-brown/20">
+                                    <th class="py-4 pr-4 font-body font-bold text-sun-brown w-1/3">Command</th>
+                                    <th class="py-4 font-body font-bold text-sun-brown">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sun-brown/90">
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80 whitespace-nowrap">/blackmarket</span></td>
+                                    <td class="py-4 align-middle">Open the Black Market menu</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80 whitespace-nowrap">/bm</span></td>
+                                    <td class="py-4 align-middle">Alias command to open the Black Market menu</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </article>
 
             </div>
             <div id="section-ranks" class="wiki-section hidden animate-fade-in"><h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Ranks</h1><p class="font-body text-sun-brown/90">Rank content here...</p></div>
-            <div id="section-claiming" class="wiki-section hidden animate-fade-in"><h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Claiming</h1><p class="font-body text-sun-brown/90">Claiming content here...</p></div>
+            <!-- ================= CLAIMING SECTION CONTAINER ================= -->
+            <div id="section-claiming" class="wiki-section hidden animate-fade-in">
+                
+                <!-- How to Claim -->
+                <article id="claim-how" class="claiming-card block animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">How to Claim & View</h1>
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-6">
+                        Protect your land, builds, and items by claiming your territory!
+                    </p>
+
+                    <!-- Large Claim Example Picture -->
+                    <img src="./images/claimexample.png" alt="Claim Example Preview" class="w-full rounded border-4 border-sun-brown mb-8 object-cover shadow-sm">
+
+                    <div class="bg-[#F8E7DF] border-l-4 border-sun-orange p-4 mb-8 rounded shadow-sm">
+                        <div class="font-body text-sm text-sun-brown/90 space-y-4">
+                            
+                            <!-- Golden Shovel Tool -->
+                            <div class="flex items-center gap-3">
+                                <img src="./images/goldenshovel.png" alt="Golden Shovel" class="w-8 h-8 object-contain drop-shadow-sm flex-shrink-0">
+                                <p>
+                                    <strong>Claiming:</strong> Right click and select 2 corners of the area that you want to claim with a golden shovel.
+                                </p>
+                            </div>
+
+                            <!-- Stick Tool -->
+                            <div class="flex items-center gap-3">
+                                <img src="./images/stick.png" alt="Stick" class="w-8 h-8 object-contain drop-shadow-sm flex-shrink-0">
+                                <p>
+                                    <strong>Viewing:</strong> Right click an area with a stick to view claim information and boundaries.<br>
+                                    <strong>Nearby Claims:</strong> <kbd class="bg-sun-card border border-sun-brown/20 px-1 py-0.5 rounded text-xs shadow-sm font-bold">SHIFT</kbd> + right click with a stick to view claims around you.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto mb-10 border-t border-sun-brown/20">
+                        <table class="w-full text-left font-body">
+                            <thead>
+                                <tr class="border-b border-sun-brown/20">
+                                    <th class="py-4 pr-4 font-body font-bold text-sun-brown w-1/3">Command</th>
+                                    <th class="py-4 font-body font-bold text-sun-brown">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sun-brown/90">
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/3dsubdivide</span></td>
+                                    <td class="py-4 align-middle">Use to toggle 3d subdivide mode.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80">/abandonclaim</span></td>
+                                    <td class="py-4 align-middle">Stand inside your claim and use this command to unclaim it.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Trust Levels -->
+                <article id="claim-trust" class="claiming-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Trust Levels</h1>
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-6">
+                        You can grant other players different levels of access to your claim. 
+                    </p>
+
+                    <div class="overflow-x-auto mb-10 border-t border-sun-brown/20">
+                        <table class="w-full text-left font-body">
+                            <thead>
+                                <tr class="border-b border-sun-brown/20">
+                                    <th class="py-4 pr-4 font-body font-bold text-sun-brown w-1/3">Command</th>
+                                    <th class="py-4 font-body font-bold text-sun-brown">Permissions Granted</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sun-brown/90">
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80 whitespace-nowrap">/accesstrust &lt;name&gt;</span></td>
+                                    <td class="py-4 align-middle">Gives access to levers, buttons, repeaters and bed.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80 whitespace-nowrap">/containertrust &lt;name&gt;</span></td>
+                                    <td class="py-4 align-middle">All access trust permissions, plus access to containers and villager trades.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80 whitespace-nowrap">/trust &lt;name&gt;</span></td>
+                                    <td class="py-4 align-middle">All container trust permissions, plus permission to build and break blocks.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80 whitespace-nowrap">/permissiontrust &lt;name&gt;</span></td>
+                                    <td class="py-4 align-middle">Allows the player to share their permission level with others.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle"><span class="bg-[#EBE2CF] px-2 py-1 rounded text-sm font-pixel text-sun-brown/80 whitespace-nowrap">/untrust &lt;name&gt;</span></td>
+                                    <td class="py-4 align-middle">Revokes all permissions from a player.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Claim Flags -->
+                <article id="claim-flags" class="claiming-card hidden animate-fade-in">
+                    <h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-4 tracking-wide uppercase">Claim Flags</h1>
+                    <div class="border-t border-sun-brown/20 mb-8"></div>
+                    <p class="font-body text-base text-sun-brown/90 leading-relaxed mb-6">
+                        Use <code class="bg-[#EBE2CF] px-2 py-1 rounded text-xs font-pixel text-sun-brown/80">/setclaimflag &lt;flag&gt;</code> to set a claim flag, and <code class="bg-[#EBE2CF] px-2 py-1 rounded text-xs font-pixel text-sun-brown/80">/unsetclaimflag &lt;flag&gt;</code> to remove it.
+                    </p>
+
+                    <div class="overflow-x-auto mb-8 border-t border-sun-brown/20">
+                        <table class="w-full text-left font-body">
+                            <thead>
+                                <tr class="border-b border-sun-brown/20">
+                                    <th class="py-4 pr-4 font-body font-bold text-sun-brown w-1/3">Flag Name</th>
+                                    <th class="py-4 font-body font-bold text-sun-brown">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sun-brown/90">
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">AllowBlockExplosions</td>
+                                    <td class="py-4 align-middle">Allow claim explosions.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">AllowPvP</td>
+                                    <td class="py-4 align-middle">Allow players to fight and attack.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">AllowVillagerTrading</td>
+                                    <td class="py-4 align-middle">Lets players trade with villagers without trust.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">NoChorusFruit</td>
+                                    <td class="py-4 align-middle">Stops players from teleporting using chorus fruits.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">NoEnderPearl</td>
+                                    <td class="py-4 align-middle">Stops players from teleporting using ender pearls.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">NoEnterPlayer</td>
+                                    <td class="py-4 align-middle">Blocks specific players from entering this area.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">NoIceForm</td>
+                                    <td class="py-4 align-middle">Stops ice from forming.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">NoVehicles</td>
+                                    <td class="py-4 align-middle">Stops players from placing and using vehicles.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">ProtectNamedMobs</td>
+                                    <td class="py-4 align-middle">Protect mobs that are named.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">RaidMemberOnly</td>
+                                    <td class="py-4 align-middle">Stops untrusted players from triggering raids.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">ReadLecterns</td>
+                                    <td class="py-4 align-middle">Allows players to read but not edit lecterns.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle font-pixel text-sm text-sun-brown">ViewContainers</td>
+                                    <td class="py-4 align-middle">Allows players to view (not manipulate) any container.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle">
+                                        <span class="font-pixel text-sm text-sun-brown block mb-1">NotifyEnter</span>
+                                        <span class="bg-[#E5E7EB] text-[#374151] px-2 py-0.5 rounded text-[10px] font-pixel uppercase tracking-wider inline-block shadow-sm">Iron Rank+</span>
+                                    </td>
+                                    <td class="py-4 align-middle">Notifies the claim owner when a player enters the claim.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle">
+                                        <span class="font-pixel text-sm text-sun-brown block mb-1">NotifyExit</span>
+                                        <span class="bg-[#E5E7EB] text-[#374151] px-2 py-0.5 rounded text-[10px] font-pixel uppercase tracking-wider inline-block shadow-sm">Iron Rank+</span>
+                                    </td>
+                                    <td class="py-4 align-middle">Notifies the claim owner when a player exits the claim.</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle">
+                                        <span class="font-pixel text-sm text-sun-brown block mb-1">PlayerTime</span>
+                                        <span class="bg-[#34D399] text-[#064E3B] px-2 py-0.5 rounded text-[10px] font-pixel uppercase tracking-wider inline-block shadow-sm">Emerald Rank+</span>
+                                    </td>
+                                    <td class="py-4 align-middle">Set the time in a claim for players (Visual Only).</td>
+                                </tr>
+                                <tr class="border-b border-sun-brown/10 hover:bg-sun-card/30 transition-colors">
+                                    <td class="py-4 pr-4 align-middle">
+                                        <span class="font-pixel text-sm text-sun-brown block mb-1">PlayerWeather</span>
+                                        <span class="bg-[#34D399] text-[#064E3B] px-2 py-0.5 rounded text-[10px] font-pixel uppercase tracking-wider inline-block shadow-sm">Emerald Rank+</span>
+                                    </td>
+                                    <td class="py-4 align-middle">Set the weather in a claim for players (Visual Only).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+            </div>
             <div id="section-fishing" class="wiki-section hidden animate-fade-in"><h1 class="font-pixel text-3xl md:text-4xl text-sun-brown mb-2 tracking-wide uppercase">Fishing</h1><p class="font-body text-sun-brown/90">Fishing content here...</p></div>
 
             <!-- ================= DUNGEONS SECTION CONTAINER ================= -->

@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const economyNavLinks = document.querySelectorAll('.economy-nav-link');
     const economyCards = document.querySelectorAll('.economy-card');
 
+    const claimingToggle = document.getElementById('claiming-menu-toggle');
+    const claimingSubMenu = document.getElementById('claiming-sub-menu');
+    const claimingNavLinks = document.querySelectorAll('.claiming-nav-link');
+    const claimingCards = document.querySelectorAll('.claiming-card');
+
     // Helper: Reset ALL sidebar link highlights
     function resetAllHighlights() {
         mainNavLinks.forEach(l => {
@@ -28,10 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
             economyToggle.classList.remove('text-sun-orange', 'font-bold');
             economyToggle.classList.add('text-sun-brown');
         }
+        if (claimingToggle) {
+            claimingToggle.classList.remove('text-sun-orange', 'font-bold');
+            claimingToggle.classList.add('text-sun-brown');
+        }
+        claimingNavLinks.forEach(t => t.classList.remove('active'));
         
         // Clear sub-menu highlights so they don't stay darkened when you leave the section
         dungeonNavLinks.forEach(t => t.classList.remove('active'));
         economyNavLinks.forEach(t => t.classList.remove('active'));
+        
     }
 
     // Helper: Hide all main sections
@@ -51,6 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (except !== 'economy' && economySubMenu) {
             economySubMenu.classList.add('hidden');
             if (economyToggle) economyToggle.classList.remove('expanded');
+        }
+        if (except !== 'claiming' && claimingSubMenu) {
+            claimingSubMenu.classList.add('hidden');
+            if (claimingToggle) claimingToggle.classList.remove('expanded');
         }
     }
 
@@ -160,6 +175,50 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             
             const targetId = link.getAttribute('data-economy');
+            const targetCard = document.getElementById(targetId);
+            if (targetCard) {
+                targetCard.classList.remove('hidden');
+                targetCard.classList.add('block');
+            }
+            
+            if(window.innerWidth < 768) {
+                window.scrollTo({ top: targetCard.offsetTop - 80, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // TOGGLE CLAIMING SUBMENU
+    if (claimingToggle) {
+        claimingToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeAllSubmenus('claiming');
+            claimingSubMenu.classList.toggle('hidden');
+            claimingToggle.classList.toggle('expanded');
+        });
+    }
+
+    // CLAIMING SUB-TAB NAVIGATION
+    claimingNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            closeAllSubmenus('claiming');
+            hideAllSections();
+            document.getElementById('section-claiming').classList.remove('hidden');
+            document.getElementById('section-claiming').classList.add('block');
+            
+            resetAllHighlights();
+            claimingToggle.classList.remove('text-sun-brown');
+            claimingToggle.classList.add('text-sun-orange', 'font-bold');
+
+            link.classList.add('active');
+            
+            claimingCards.forEach(card => {
+                card.classList.remove('block');
+                card.classList.add('hidden');
+            });
+            
+            const targetId = link.getAttribute('data-claiming');
             const targetCard = document.getElementById(targetId);
             if (targetCard) {
                 targetCard.classList.remove('hidden');
